@@ -1,0 +1,122 @@
+/* CVV SEO article styling pack */
+:root {
+  --cvv-primary: #0f766e;
+  --cvv-primary-soft: #ccfbf1;
+  --cvv-accent: #f59e0b;
+  --cvv-text: #1f2937;
+  --cvv-muted: #6b7280;
+  --cvv-border: #e5e7eb;
+  --cvv-bg-soft: #f8fafc;
+}
+
+.cvv-article {
+  color: var(--cvv-text);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+.cvv-article h2,
+.cvv-article h3 {
+  color: #0b3b36;
+  line-height: 1.35;
+  margin: 1.4em 0 0.55em;
+}
+
+.cvv-article h2 {
+  font-size: 1.55rem;
+  border-left: 4px solid var(--cvv-primary);
+  padding-left: .7rem;
+}
+
+.cvv-article h3 {
+  font-size: 1.25rem;
+}
+
+.cvv-article p { margin: .8em 0; }
+
+.cvv-list {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cvv-list li {
+  position: relative;
+  margin: .45rem 0;
+  padding: .55rem .75rem .55rem 2rem;
+  border: 1px solid var(--cvv-border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.cvv-list li::before {
+  content: "✓";
+  position: absolute;
+  left: .7rem;
+  top: .45rem;
+  color: var(--cvv-primary);
+  font-weight: 700;
+}
+
+.cvv-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.2rem;
+  background: #fff;
+  border: 1px solid var(--cvv-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, .05);
+}
+
+.cvv-table th,
+.cvv-table td {
+  border-bottom: 1px solid var(--cvv-border);
+  padding: .75rem .9rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.cvv-table thead th {
+  background: var(--cvv-primary-soft);
+  color: #0b3b36;
+  font-weight: 700;
+}
+
+.cvv-table tbody tr:nth-child(even) td {
+  background: var(--cvv-bg-soft);
+}
+
+.cvv-cta {
+  margin: 1.2rem 0;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(15, 118, 110, .22);
+}
+
+.cvv-cta p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.cvv-cta a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.cvv-note {
+  margin: 1rem 0;
+  padding: .8rem .95rem;
+  border-left: 4px solid var(--cvv-accent);
+  background: #fffbeb;
+  color: #78350f;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .cvv-article { font-size: 16px; }
+  .cvv-table { display: block; overflow-x: auto; }
+}
