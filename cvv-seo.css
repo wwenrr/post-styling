@@ -120,3 +120,80 @@
   .cvv-article { font-size: 16px; }
   .cvv-table { display: block; overflow-x: auto; }
 }
+
+/* TOC */
+.cvv-toc-wrap {
+  margin: 1rem 0 1.2rem;
+  padding: .95rem 1rem;
+  background: #ecfeff;
+  border: 1px solid #a5f3fc;
+  border-radius: 12px;
+}
+
+.cvv-toc-title {
+  margin: 0 0 .55rem;
+  font-size: 1.05rem;
+  color: #164e63;
+}
+
+.cvv-toc {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.cvv-toc li { margin: .25rem 0; }
+
+.cvv-toc a {
+  color: #0f766e;
+  text-decoration: none;
+}
+
+.cvv-toc a:hover { text-decoration: underline; }
+
+/* FAQ */
+.cvv-faq {
+  margin: 1.2rem 0;
+  padding: .95rem 1rem;
+  border: 1px solid var(--cvv-border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.cvv-faq h2 { margin-top: 0; }
+
+.cvv-faq-item {
+  margin: .75rem 0;
+  padding: .7rem .8rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.cvv-faq-q {
+  margin: 0 0 .45rem;
+  color: #0b3b36;
+  font-weight: 700;
+}
+
+.cvv-faq-a { margin: 0; }
+
+/* Author */
+.cvv-author {
+  margin: 1.2rem 0;
+  padding: .9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+}
+
+.cvv-author-name {
+  margin: 0 0 .2rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.cvv-author-role {
+  margin: 0;
+  color: #1e40af;
+  font-size: .95rem;
+}
