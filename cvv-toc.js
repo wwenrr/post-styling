@@ -11,6 +11,21 @@
       .replace(/^-|-$/g, '');
   }
 
+  function ensureCss(root) {
+    var href = root && root.getAttribute('data-cvv-css');
+    if (!href) return;
+
+    var existing = document.querySelector('link[data-cvv-css="' + href + '"]') ||
+      document.querySelector('link[href="' + href + '"]');
+    if (existing) return;
+
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.setAttribute('data-cvv-css', href);
+    document.head.appendChild(link);
+  }
+
   function buildTOC(root) {
     var toc = root.querySelector('[data-cvv-toc]');
     if (!toc) return;
@@ -45,8 +60,17 @@
     toc.appendChild(ul);
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function boot() {
     var roots = document.querySelectorAll('.cvv-article');
-    roots.forEach(buildTOC);
-  });
+    roots.forEach(function (root) {
+      ensureCss(root);
+      buildTOC(root);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();
