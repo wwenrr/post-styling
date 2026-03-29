@@ -32,7 +32,7 @@
 .cvv-article h1,
 .cvv-article h2,
 .cvv-article h3 {
-  margin: 1.35em 0 0.55em;
+  margin: 1.1em 0 0.42em;
   line-height: 1.3;
   letter-spacing: -0.015em;
   color: #0b3b36;
@@ -48,13 +48,13 @@
 }
 
 .cvv-article h2 {
-  font-size: clamp(1.18rem, 1.6vw, 1.42rem);
+  font-size: clamp(1.02rem, 1.2vw, 1.20rem);
   padding-left: 0.62rem;
   border-left: 3px solid var(--cvv-primary);
 }
 
 .cvv-article h3 {
-  font-size: clamp(1.03rem, 1.35vw, 1.18rem);
+  font-size: clamp(0.94rem, 1.0vw, 1.05rem);
 }
 
 .cvv-article p {
@@ -475,11 +475,11 @@
   }
 
   .cvv-article h2 {
-    font-size: 1.15rem;
+    font-size: 1.02rem;
   }
 
   .cvv-article h3 {
-    font-size: 1.02rem;
+    font-size: 0.94rem;
   }
 
   .cvv-table {
