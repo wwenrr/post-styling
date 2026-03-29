@@ -110,12 +110,14 @@
       btn.className = 'cvv-toc-toggle';
       btn.setAttribute('aria-expanded', 'true');
       btn.setAttribute('aria-label', 'Thu gọn mục lục con');
-      btn.textContent = '▾';
+      btn.textContent = '';
+      btn.setAttribute('title', 'Thu gọn/mở rộng mục lục con');
 
       btn.addEventListener('click', function () {
         var expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        btn.textContent = expanded ? '▸' : '▾';
+        btn.textContent = '';
+        btn.setAttribute('aria-label', expanded ? 'Mở rộng mục lục con' : 'Thu gọn mục lục con');
         item.classList.toggle('is-collapsed', expanded);
       });
 
@@ -139,7 +141,8 @@
           var item = btn.closest('.cvv-toc-item-h2');
           if (!item) return;
           btn.setAttribute('aria-expanded', collapsing ? 'false' : 'true');
-          btn.textContent = collapsing ? '▸' : '▾';
+          btn.textContent = '';
+          btn.setAttribute('aria-label', collapsing ? 'Mở rộng mục lục con' : 'Thu gọn mục lục con');
           item.classList.toggle('is-collapsed', collapsing);
         });
         collapseAll.setAttribute('data-state', collapsing ? 'collapsed' : 'expanded');

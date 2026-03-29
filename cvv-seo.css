@@ -264,7 +264,7 @@
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.33rem 0;
+  padding: 0.28rem 0;
 }
 
 .cvv-article .cvv-toc-link {
@@ -286,7 +286,7 @@
 }
 
 .cvv-article .cvv-toc-item-h3 > .cvv-toc-row {
-  padding-left: 1.45rem;
+  padding-left: 1.25rem;
 }
 
 .cvv-article .cvv-toc-item-h3 > .cvv-toc-row .cvv-toc-link {
@@ -302,17 +302,38 @@
 }
 
 .cvv-article .cvv-toc-toggle {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
   border: 1px solid #93c5fd;
-  border-radius: 6px;
+  border-radius: 999px;
   background: #eff6ff;
-  color: #1d4ed8;
-  font-size: 11px;
+  color: transparent;
+  font-size: 0;
   line-height: 1;
   padding: 0;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cvv-article .cvv-toc-toggle::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #1d4ed8;
+  border-bottom: 2px solid #1d4ed8;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.cvv-article .cvv-toc-toggle[aria-expanded="false"]::before {
+  transform: rotate(-45deg);
+  margin-top: 0;
+  margin-left: -1px;
 }
 
 .cvv-article .cvv-toc-toggle:hover {
