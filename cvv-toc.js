@@ -128,6 +128,28 @@
     toc.appendChild(ul);
 
     var wrap = toc.closest('.cvv-toc-wrap');
+    if (wrap && !wrap.querySelector('.cvv-toc-head')) {
+      var titleEl = wrap.querySelector('.cvv-toc-title');
+      var label = (titleEl && titleEl.textContent && titleEl.textContent.trim()) || 'Table of contents';
+
+      var headBtn = document.createElement('button');
+      headBtn.type = 'button';
+      headBtn.className = 'cvv-toc-head';
+      headBtn.setAttribute('aria-expanded', 'true');
+      headBtn.innerHTML = '<span class="cvv-toc-head-label">' + label + '</span><span class="cvv-toc-head-arrow" aria-hidden="true"></span>';
+
+      headBtn.addEventListener('click', function () {
+        var expanded = headBtn.getAttribute('aria-expanded') === 'true';
+        headBtn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        wrap.classList.toggle('is-toc-collapsed', expanded);
+      });
+
+      wrap.insertBefore(headBtn, toc);
+      if (titleEl) {
+        titleEl.remove();
+      }
+    }
+
     if (wrap && !wrap.querySelector('.cvv-toc-collapse-all')) {
       var collapseAll = document.createElement('button');
       collapseAll.type = 'button';
@@ -153,11 +175,48 @@
     }
   }
 
+  function enhanceFAQ(root) {
+    var faq = root.querySelector('.cvv-faq');
+    if (!faq) return;
+
+    var items = faq.querySelectorAll('.cvv-faq-item');
+    if (!items.length) return;
+
+    items.forEach(function (item, idx) {
+      if (item.querySelector('.cvv-faq-trigger')) return;
+
+      var q = item.querySelector('.cvv-faq-q') || item.querySelector('h3, h4, strong');
+      var a = item.querySelector('.cvv-faq-a') || item.querySelector('p');
+      if (!q || !a) return;
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cvv-faq-trigger';
+      btn.innerHTML = '<span class="cvv-faq-trigger-text">' + q.textContent.trim() + '</span><span class="cvv-faq-trigger-arrow" aria-hidden="true"></span>';
+
+      var open = idx === 0;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      item.classList.toggle('is-open', open);
+
+      btn.addEventListener('click', function () {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        item.classList.toggle('is-open', !expanded);
+      });
+
+      q.replaceWith(btn);
+      if (!a.classList.contains('cvv-faq-a')) {
+        a.classList.add('cvv-faq-a');
+      }
+    });
+  }
+
   function boot() {
     var roots = document.querySelectorAll('.cvv-article');
     roots.forEach(function (root) {
       ensureCss(root);
       buildTOC(root);
+      enhanceFAQ(root);
     });
   }
 

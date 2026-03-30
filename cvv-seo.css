@@ -272,7 +272,7 @@
 /* TOC */
 .cvv-article .cvv-toc-wrap {
   margin: 1.15rem 0 1.6rem !important;
-  padding: 1rem 1.15rem !important;
+  padding: 0.65rem 0.95rem !important;
   background: #f4f5f7 !important;
   border: 1px solid #e5e7eb !important;
   border-radius: 12px !important;
@@ -280,15 +280,46 @@
 }
 
 .cvv-article .cvv-toc-title {
-  margin: 0 !important;
-  font-size: 1.38rem !important;
+  display: none !important;
+}
+
+.cvv-article .cvv-toc-head {
+  width: 100% !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0.2rem 0.1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+}
+
+.cvv-article .cvv-toc-head-label {
+  font-size: 1.92rem !important;
   font-weight: 760 !important;
   color: #2a3441 !important;
 }
 
+.cvv-article .cvv-toc-head-arrow {
+  width: 10px !important;
+  height: 10px !important;
+  border-right: 2px solid #4b5563 !important;
+  border-bottom: 2px solid #4b5563 !important;
+  transform: rotate(45deg) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.cvv-article .cvv-toc-head[aria-expanded="true"] .cvv-toc-head-arrow {
+  transform: rotate(-135deg) !important;
+}
+
+.cvv-article .cvv-toc-wrap.is-toc-collapsed [data-cvv-toc] {
+  display: none !important;
+}
+
 .cvv-article .cvv-toc,
 .cvv-article .cvv-toc ul {
-  margin: 0 !important;
+  margin: 0.3rem 0 0 !important;
   padding: 0 !important;
   list-style: none !important;
 }
@@ -397,45 +428,83 @@
 
 /* FAQ */
 .cvv-article .cvv-faq {
-  margin: 1.25rem 0 !important;
-  padding: 0.95rem !important;
-  border: 1px solid #dbe3ee !important;
-  border-radius: 14px !important;
-  background: #f8fbff !important;
+  margin: 1.5rem 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
 }
 
 .cvv-article .cvv-faq h2 {
-  margin-top: 0 !important;
-  margin-bottom: 0.7rem !important;
-  font-size: 1.08rem !important;
+  margin: 0 0 1rem !important;
+  font-size: clamp(1.9rem, 2.6vw, 2.4rem) !important;
+  font-weight: 820 !important;
+  color: #2a3441 !important;
   padding-left: 0 !important;
   border-left: 0 !important;
 }
 
 .cvv-article .cvv-faq-item {
-  margin: 0.65rem 0 !important;
-  padding: 0.86rem 0.92rem !important;
-  border-radius: 12px !important;
-  background: #ffffff !important;
-  border: 1px solid #dde6f1 !important;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+  margin: 0 !important;
+  padding: 0.12rem 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid #d7dbe0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .cvv-article .cvv-faq-item p {
   margin: 0 !important;
 }
 
-.cvv-article .cvv-faq-q {
-  margin: 0 0 0.5rem !important;
-  color: #0f172a !important;
-  font-weight: 800 !important;
+.cvv-article .cvv-faq-trigger {
+  width: 100% !important;
+  border: 0 !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.8rem !important;
+  padding: 0.82rem 0 !important;
+  cursor: pointer !important;
+  text-align: left !important;
+}
+
+.cvv-article .cvv-faq-trigger-text {
+  color: #2b3642 !important;
+  font-size: 1.04rem !important;
+  font-weight: 760 !important;
   line-height: 1.45 !important;
 }
 
+.cvv-article .cvv-faq-trigger-arrow {
+  width: 8px !important;
+  height: 8px !important;
+  border-right: 2px solid #4b5563 !important;
+  border-bottom: 2px solid #4b5563 !important;
+  transform: rotate(45deg) !important;
+  transition: transform 0.18s ease !important;
+}
+
+.cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow {
+  transform: rotate(-135deg) !important;
+}
+
+.cvv-article .cvv-faq-q {
+  display: none !important;
+}
+
 .cvv-article .cvv-faq-a {
-  margin: 0 !important;
-  color: #334155 !important;
-  line-height: 1.72 !important;
+  display: none !important;
+  margin: 0 0 0.9rem !important;
+  color: #2f3b48 !important;
+  font-size: 1.02rem !important;
+  line-height: 1.65 !important;
+}
+
+.cvv-article .cvv-faq-item.is-open .cvv-faq-a {
+  display: block !important;
 }
 
 /* Author */
@@ -521,12 +590,24 @@
     font-size: 1.2rem !important;
   }
 
+  .cvv-article .cvv-toc-head-label {
+    font-size: 1.18rem !important;
+  }
+
   .cvv-article .cvv-toc-item-h2 > .cvv-toc-row .cvv-toc-link {
     font-size: 0.98rem !important;
   }
 
   .cvv-article .cvv-toc-item-h3 > .cvv-toc-row .cvv-toc-link {
     font-size: 0.9rem !important;
+  }
+
+  .cvv-article .cvv-faq h2 {
+    font-size: 1.6rem !important;
+  }
+
+  .cvv-article .cvv-faq-trigger-text {
+    font-size: 0.98rem !important;
   }
 
   .cvv-table {
