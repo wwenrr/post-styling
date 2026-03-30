@@ -101,10 +101,14 @@
 
 .cvv-article img {
   max-width: 100% !important;
+  width: min(100%, 760px) !important;
   height: auto !important;
+  max-height: 480px !important;
+  object-fit: contain !important;
+  display: block !important;
   border-radius: 12px !important;
   box-shadow: var(--cvv-shadow-sm) !important;
-  margin: 0.8rem 0 !important;
+  margin: 1rem auto !important;
 }
 
 .cvv-article blockquote {
@@ -492,6 +496,11 @@
     display: block !important;
     overflow-x: auto !important;
     white-space: nowrap !important;
+  }
+
+  .cvv-article img {
+    width: 100% !important;
+    max-height: 360px !important;
   }
 
   .cvv-kpi-grid {
