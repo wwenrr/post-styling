@@ -124,9 +124,10 @@
 .cvv-article img {
   max-width: 100% !important;
   width: 100% !important;
-  height: auto !important;
+  height: clamp(220px, 45vw, 384px) !important;
   max-height: 384px !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
+  object-position: center !important;
   display: block !important;
   border-radius: 12px !important;
   box-shadow: var(--cvv-shadow-sm) !important;
@@ -138,9 +139,10 @@
 .cvv-article .wp-block-image img {
   width: 100% !important;
   max-width: 100% !important;
+  height: clamp(220px, 45vw, 384px) !important;
   max-height: 384px !important;
-  height: auto !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
+  object-position: center !important;
   display: block !important;
   margin-left: auto !important;
   margin-right: auto !important;
