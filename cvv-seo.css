@@ -123,7 +123,7 @@
 
 .cvv-article img {
   max-width: 100% !important;
-  width: 100% !important;
+  width: 80% !important;
   height: clamp(220px, 45vw, 384px) !important;
   max-height: 384px !important;
   object-fit: cover !important;
@@ -137,7 +137,7 @@
 .cvv-article p > img,
 .cvv-article figure > img,
 .cvv-article .wp-block-image img {
-  width: 100% !important;
+  width: 80% !important;
   max-width: 100% !important;
   height: clamp(220px, 45vw, 384px) !important;
   max-height: 384px !important;
