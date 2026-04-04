@@ -123,9 +123,9 @@
 
 .cvv-article img {
   max-width: 100% !important;
-  width: min(100%, 500px) !important;
+  width: 100% !important;
   height: auto !important;
-  max-height: 320px !important;
+  max-height: 384px !important;
   object-fit: contain !important;
   display: block !important;
   border-radius: 12px !important;
@@ -136,8 +136,9 @@
 .cvv-article p > img,
 .cvv-article figure > img,
 .cvv-article .wp-block-image img {
-  width: min(100%, 500px) !important;
-  max-height: 320px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: 384px !important;
   height: auto !important;
   object-fit: contain !important;
   display: block !important;
