@@ -530,6 +530,22 @@
   border-left-color: transparent;
 }
 
+.cvv-article :is(.cvv-toc-head, .cvv-toc-toggle, .cvv-toc-link, .cvv-toc-collapse-all, .cvv-faq-trigger) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cvv-article :is(.cvv-toc-head, .cvv-toc-toggle, .cvv-toc-link, .cvv-toc-collapse-all, .cvv-faq-trigger):focus,
+.cvv-article :is(.cvv-toc-head, .cvv-toc-toggle, .cvv-toc-link, .cvv-toc-collapse-all, .cvv-faq-trigger):focus-visible,
+.cvv-article :is(.cvv-toc-head, .cvv-toc-toggle, .cvv-toc-link, .cvv-toc-collapse-all, .cvv-faq-trigger):active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.cvv-article :is(h1, h2, h3, h4, h5, h6):target {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .cvv-article .cvv-toc-collapse-all {
   display: none;
 }
