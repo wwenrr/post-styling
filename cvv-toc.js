@@ -27,11 +27,26 @@
   }
 
   function buildTOC(root) {
-    var toc = root.querySelector('[data-cvv-toc]');
-    if (!toc) return;
-
     var headings = root.querySelectorAll('h2, h3');
     if (!headings.length) return;
+
+    var toc = root.querySelector('[data-cvv-toc]');
+    if (!toc) {
+      var wrap = document.createElement('nav');
+      wrap.className = 'cvv-toc-wrap';
+      wrap.setAttribute('aria-label', 'Table of contents');
+
+      var title = document.createElement('div');
+      title.className = 'cvv-toc-title';
+      title.textContent = 'Table of contents';
+
+      toc = document.createElement('div');
+      toc.setAttribute('data-cvv-toc', '');
+
+      wrap.appendChild(title);
+      wrap.appendChild(toc);
+      root.insertBefore(wrap, root.firstChild);
+    }
 
     var ul = document.createElement('ul');
     ul.className = 'cvv-toc';
