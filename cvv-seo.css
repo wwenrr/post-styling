@@ -18,8 +18,8 @@
   --cvv-code-bg: #fffaf0;
   --cvv-code-border: #eeddb2;
   --cvv-code-border-strong: #e4c06c;
-  --cvv-cta-shadow: 0 14px 34px rgba(31, 31, 31, 0.16), 0 4px 12px rgba(250, 82, 15, 0.2);
-  --cvv-cta-shadow-hover: 0 18px 42px rgba(31, 31, 31, 0.22), 0 8px 18px rgba(250, 82, 15, 0.24);
+  --cvv-cta-shadow: 0 12px 28px rgba(250, 82, 15, 0.2), 0 4px 12px rgba(255, 161, 16, 0.22);
+  --cvv-cta-shadow-hover: 0 15px 34px rgba(250, 82, 15, 0.24), 0 6px 16px rgba(255, 161, 16, 0.26);
 }
 
 .cvv-article {
@@ -391,17 +391,19 @@
 
 .cvv-article a.cvv-button-cta {
   position: relative;
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  margin: 0.5rem 0 0.3rem;
+  margin: 0.6rem auto 0.42rem;
   padding: 0.84rem 1.35rem 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--cvv-white) 28%, var(--cvv-mistral-black));
+  border: 1px solid color-mix(in srgb, var(--cvv-sunshine-700) 58%, #a35e1f);
   border-radius: 0.95rem;
   background:
-    linear-gradient(145deg, color-mix(in srgb, var(--cvv-mistral-black) 92%, #000) 0%, var(--cvv-mistral-black) 62%, color-mix(in srgb, var(--cvv-mistral-black) 72%, var(--cvv-sunshine-900)) 100%);
-  color: var(--cvv-white);
+    linear-gradient(145deg, #ffefc8 0%, #ffd790 45%, #ffc169 100%);
+  color: #2c190d;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -420,7 +422,7 @@
   inset: -30% auto auto -45%;
   width: 70%;
   height: 180%;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.26) 50%, rgba(255, 255, 255, 0) 85%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 85%);
   transform: translateX(-10%) rotate(14deg);
   transition: transform 0.45s ease;
   z-index: -1;
@@ -434,8 +436,8 @@
 }
 
 .cvv-article a.cvv-button-cta:hover {
-  color: var(--cvv-white);
-  border-color: color-mix(in srgb, var(--cvv-sunshine-500) 64%, var(--cvv-white));
+  color: #2c190d;
+  border-color: color-mix(in srgb, var(--cvv-sunshine-900) 64%, #6b3a16);
   box-shadow: var(--cvv-cta-shadow-hover);
   transform: translateY(-2px);
 }
@@ -446,7 +448,7 @@
 
 .cvv-article a.cvv-button-cta:active {
   transform: translateY(0);
-  box-shadow: 0 10px 22px rgba(31, 31, 31, 0.22);
+  box-shadow: 0 8px 18px rgba(250, 82, 15, 0.22);
 }
 
 .cvv-article a.cvv-button-cta:focus-visible {
