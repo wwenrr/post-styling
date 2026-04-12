@@ -451,6 +451,17 @@
 .cvv-article .cvv-toc-item-h2 > .cvv-toc-row .cvv-toc-link {
   color: var(--cvv-mistral-black);
   font-weight: 500;
+  flex: 1;
+}
+
+.cvv-article .cvv-toc-item-h2 > .cvv-toc-row {
+  margin: 0 -0.24rem;
+  padding: 0.3rem 0.24rem;
+  cursor: pointer;
+}
+
+.cvv-article .cvv-toc-item-h2 > .cvv-toc-row:hover {
+  background: rgba(255, 161, 16, 0.08);
 }
 
 .cvv-article .cvv-toc-item-h2 {
@@ -490,21 +501,24 @@
 }
 
 .cvv-article .cvv-toc-toggle {
-  width: 16px;
-  min-width: 16px;
-  height: 16px;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
   border: 0;
   padding: 0;
   background: transparent;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cvv-article .cvv-toc-toggle::before {
   content: '▾';
   display: inline-block;
-  width: 16px;
+  width: 24px;
   color: var(--cvv-black-tint);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1;
   text-align: center;
   border: 0;

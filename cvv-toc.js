@@ -169,6 +169,13 @@
     var ul = document.createElement('ul');
     ul.className = 'cvv-toc';
 
+    function setTocSectionExpanded(item, btn, expanded) {
+      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      btn.textContent = '';
+      btn.setAttribute('aria-label', expanded ? 'Thu gọn mục lục con' : 'Mở rộng mục lục con');
+      item.classList.toggle('is-collapsed', !expanded);
+    }
+
     var currentH2Item = null;
     var currentH3List = null;
 
@@ -246,17 +253,21 @@
       btn.setAttribute('aria-label', 'Mở rộng mục lục con');
       btn.textContent = '';
       btn.setAttribute('title', 'Mở rộng/thu gọn mục lục con');
-      item.classList.add('is-collapsed');
 
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function (event) {
+        event.stopPropagation();
         var expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        btn.textContent = '';
-        btn.setAttribute('aria-label', expanded ? 'Mở rộng mục lục con' : 'Thu gọn mục lục con');
-        item.classList.toggle('is-collapsed', expanded);
+        setTocSectionExpanded(item, btn, !expanded);
+      });
+
+      row.addEventListener('click', function (event) {
+        if (event.target.closest('.cvv-toc-link')) return;
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        setTocSectionExpanded(item, btn, !expanded);
       });
 
       row.insertBefore(btn, row.firstChild);
+      setTocSectionExpanded(item, btn, false);
     });
 
     toc.innerHTML = '';
@@ -297,10 +308,7 @@
         ul.querySelectorAll('.cvv-toc-toggle').forEach(function (btn) {
           var item = btn.closest('.cvv-toc-item-h2');
           if (!item) return;
-          btn.setAttribute('aria-expanded', collapsing ? 'false' : 'true');
-          btn.textContent = '';
-          btn.setAttribute('aria-label', collapsing ? 'Mở rộng mục lục con' : 'Thu gọn mục lục con');
-          item.classList.toggle('is-collapsed', collapsing);
+          setTocSectionExpanded(item, btn, !collapsing);
         });
         collapseAll.setAttribute('data-state', collapsing ? 'collapsed' : 'expanded');
         collapseAll.textContent = collapsing ? 'Mở rộng tất cả' : 'Thu gọn tất cả';
