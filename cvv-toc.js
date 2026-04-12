@@ -242,10 +242,11 @@
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'cvv-toc-toggle';
-      btn.setAttribute('aria-expanded', 'true');
-      btn.setAttribute('aria-label', 'Thu gọn mục lục con');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Mở rộng mục lục con');
       btn.textContent = '';
-      btn.setAttribute('title', 'Thu gọn/mở rộng mục lục con');
+      btn.setAttribute('title', 'Mở rộng/thu gọn mục lục con');
+      item.classList.add('is-collapsed');
 
       btn.addEventListener('click', function () {
         var expanded = btn.getAttribute('aria-expanded') === 'true';
@@ -288,8 +289,8 @@
       var collapseAll = document.createElement('button');
       collapseAll.type = 'button';
       collapseAll.className = 'cvv-toc-collapse-all';
-      collapseAll.textContent = 'Thu gọn tất cả';
-      collapseAll.setAttribute('data-state', 'expanded');
+      collapseAll.textContent = 'Mở rộng tất cả';
+      collapseAll.setAttribute('data-state', 'collapsed');
 
       collapseAll.addEventListener('click', function () {
         var collapsing = collapseAll.getAttribute('data-state') === 'expanded';
