@@ -1,5 +1,6 @@
 /* CVV SEO article styling pack — flat editorial variant */
 :root {
+  --cvv-font-stack: "Be Vietnam Pro", "Inter", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --cvv-mistral-orange: #fa520f;
   --cvv-flame: #fb6424;
   --cvv-sunshine-900: #ff8a00;
@@ -12,32 +13,29 @@
   --cvv-mistral-black: #1f1f1f;
   --cvv-black-tint: #3d3d3d;
   --cvv-border: #e8dfc7;
+  --cvv-toc-bg: #fff9ec;
+  --cvv-toc-border: #f4e2b2;
 }
 
 .cvv-article {
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  font-family: var(--cvv-font-stack);
   color: var(--cvv-mistral-black);
-  font-size: 16px;
-  line-height: 1.72;
+  font-size: 16.5px;
+  line-height: 1.74;
   letter-spacing: normal;
   max-width: 980px;
   margin: 0 auto;
   padding: 0;
   background: transparent;
   word-break: break-word;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .cvv-article,
 .cvv-article * {
   box-sizing: border-box;
-}
-
-.cvv-article *,
-.cvv-article *::before,
-.cvv-article *::after {
-  animation: none !important;
-  transition: none !important;
-  box-shadow: none !important;
 }
 
 .cvv-article h1,
@@ -230,7 +228,13 @@
 }
 
 .cvv-faq-list {
-  margin-top: 0.85rem;
+  list-style: none;
+  margin: 0.72rem 0 1rem;
+  padding-left: 0;
+}
+
+.cvv-faq-list > li::marker {
+  content: '';
 }
 
 .cvv-faq-item {
@@ -327,6 +331,13 @@
   display: none;
 }
 
+.cvv-article .cvv-toc-wrap {
+  margin: 1.1rem 0 1.45rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--cvv-toc-border);
+  background: var(--cvv-toc-bg);
+}
+
 .cvv-article .cvv-toc-head {
   width: 100%;
   margin: 0.4rem 0 0.2rem;
@@ -340,19 +351,12 @@
 }
 
 .cvv-article .cvv-toc-head-label {
-  font-size: 1.2rem;
+  font-size: 1.06rem;
   color: var(--cvv-mistral-black);
-  font-weight: 500;
+  font-weight: 600;
 }
 
-.cvv-article .cvv-toc-head-arrow,
-.cvv-article .cvv-faq-trigger-arrow,
-.cvv-article .cvv-toc-toggle::before {
-  transition: none !important;
-}
-
-.cvv-article .cvv-toc-head-arrow,
-.cvv-article .cvv-faq-trigger-arrow {
+.cvv-article .cvv-toc-head-arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -362,16 +366,28 @@
   color: var(--cvv-black-tint);
 }
 
-.cvv-article .cvv-toc-head-arrow::before,
-.cvv-article .cvv-faq-trigger-arrow::before {
-  content: '+';
-  font-size: 14px;
+.cvv-article .cvv-toc-head-arrow::before {
+  content: '▾';
+  font-size: 13px;
   line-height: 1;
+  transition: transform 0.22s ease;
 }
 
-.cvv-article .cvv-toc-head[aria-expanded='true'] .cvv-toc-head-arrow::before,
-.cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow::before {
-  content: '−';
+.cvv-article .cvv-toc-wrap.is-toc-collapsed .cvv-toc-head-arrow::before {
+  transform: rotate(-90deg);
+}
+
+.cvv-article [data-cvv-toc] {
+  overflow: hidden;
+  max-height: 2400px;
+  opacity: 1;
+  transition: max-height 0.32s ease, opacity 0.24s ease, margin-top 0.24s ease;
+}
+
+.cvv-article .cvv-toc-wrap.is-toc-collapsed [data-cvv-toc] {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
 }
 
 .cvv-article .cvv-toc {
@@ -421,6 +437,10 @@
   margin-left: 0;
   padding-left: 0;
   border-left: 1px solid var(--cvv-border);
+  max-height: 1200px;
+  overflow: hidden;
+  opacity: 1;
+  transition: max-height 0.26s ease, opacity 0.2s ease, border-color 0.2s ease;
 }
 
 .cvv-article .cvv-toc-toggle {
@@ -444,6 +464,7 @@
   border: 0;
   transform: none;
   margin: 0;
+  transition: transform 0.2s ease;
 }
 
 .cvv-article .cvv-toc-toggle[aria-expanded='false']::before {
@@ -454,9 +475,13 @@
   content: '−';
 }
 
-.cvv-article .cvv-toc-item-h2.is-collapsed > .cvv-toc-sublist,
-.cvv-article .cvv-toc-wrap.is-toc-collapsed [data-cvv-toc] {
-  display: none;
+.cvv-article .cvv-toc-item-h2.is-collapsed > .cvv-toc-sublist {
+  max-height: 0;
+  opacity: 0;
+}
+
+.cvv-article .cvv-toc-item-h2.is-collapsed > .cvv-toc-sublist {
+  border-left-color: transparent;
 }
 
 .cvv-article .cvv-toc-collapse-all {
@@ -465,6 +490,8 @@
 
 .cvv-article .cvv-faq-item {
   border-bottom: 1px solid var(--cvv-border);
+  margin: 0;
+  padding: 0.08rem 0;
 }
 
 .cvv-article .cvv-faq-trigger {
@@ -475,25 +502,58 @@
   justify-content: space-between;
   align-items: center;
   gap: 0.7rem;
-  padding: 0.6rem 0;
+  padding: 0.68rem 0;
   text-align: left;
   cursor: pointer;
+  font-family: inherit;
 }
 
 .cvv-article .cvv-faq-trigger-text {
   color: var(--cvv-mistral-black);
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.46;
+  font-size: 1.01rem;
+}
+
+.cvv-article .cvv-faq-trigger-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  color: var(--cvv-black-tint);
+}
+
+.cvv-article .cvv-faq-trigger-arrow::before {
+  content: '+';
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+
+.cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow::before {
+  content: '−';
 }
 
 .cvv-article .cvv-faq-a {
-  margin: 0 0 0.85rem;
+  margin: 0;
   color: var(--cvv-black-tint);
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-2px);
+  transition: max-height 0.3s ease, opacity 0.24s ease, transform 0.24s ease;
 }
 
 .cvv-article .cvv-faq-item.is-open .cvv-faq-a {
-  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  margin: 0 0 0.82rem;
+}
+
+.cvv-article .cvv-faq-a > :first-child {
+  margin-top: 0.12rem;
 }
 
 @media (max-width: 992px) {
