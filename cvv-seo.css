@@ -264,35 +264,77 @@
 .cvv-article ul:not(.cvv-toc):not(.cvv-list),
 .cvv-article ol:not(.cvv-toc):not(.cvv-list) {
   margin: 0.95rem 0 1.15rem;
-  padding-left: 1.45rem;
   color: var(--cvv-black-tint);
 }
 
 .cvv-list {
   list-style: none;
+  padding-left: 0;
 }
 
-.cvv-list.cvv-list-ol,
-.cvv-faq-list,
-.cvv-list.cvv-faq-list {
-  list-style: decimal;
-}
-
+.cvv-article ul:not(.cvv-toc):not(.cvv-list),
 .cvv-list.cvv-list-ul {
-  list-style: disc;
+  list-style: none;
+  padding-left: 0.1rem;
 }
 
-.cvv-list li,
-.cvv-article ul:not(.cvv-toc):not(.cvv-list) li,
-.cvv-article ol:not(.cvv-toc):not(.cvv-list) li {
-  margin: 0.38rem 0;
-  padding: 0;
+.cvv-article ul:not(.cvv-toc):not(.cvv-list) > li,
+.cvv-list.cvv-list-ul > li {
+  position: relative;
+  margin: 0.42rem 0;
+  padding: 0.12rem 0 0.12rem 1.32rem;
   border: 0;
   background: transparent;
 }
 
-.cvv-list li::before {
-  content: none !important;
+.cvv-article ul:not(.cvv-toc):not(.cvv-list) > li::before,
+.cvv-list.cvv-list-ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.74em;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--cvv-sunshine-700), var(--cvv-mistral-orange));
+  transform: translateY(-50%);
+}
+
+.cvv-article ol:not(.cvv-toc):not(.cvv-list):not(.cvv-faq-list),
+.cvv-list.cvv-list-ol:not(.cvv-faq-list) {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: cvv-ordered;
+}
+
+.cvv-article ol:not(.cvv-toc):not(.cvv-list):not(.cvv-faq-list) > li,
+.cvv-list.cvv-list-ol:not(.cvv-faq-list) > li {
+  position: relative;
+  margin: 0.46rem 0;
+  padding: 0.1rem 0 0.1rem 1.96rem;
+  border: 0;
+  background: transparent;
+  counter-increment: cvv-ordered;
+}
+
+.cvv-article ol:not(.cvv-toc):not(.cvv-list):not(.cvv-faq-list) > li::before,
+.cvv-list.cvv-list-ol:not(.cvv-faq-list) > li::before {
+  content: counter(cvv-ordered);
+  position: absolute;
+  left: 0;
+  top: 0.08rem;
+  width: 1.38rem;
+  height: 1.38rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cvv-code-border);
+  border-radius: 999px;
+  background: #fff4dd;
+  color: var(--cvv-sunshine-900);
+  font-size: 0.76rem;
+  line-height: 1;
+  font-weight: 600;
 }
 
 .cvv-faq-list {
@@ -303,6 +345,10 @@
 
 .cvv-faq-list > li::marker {
   content: '';
+}
+
+.cvv-faq-list > li::before {
+  content: none !important;
 }
 
 .cvv-faq-item {
@@ -753,6 +799,23 @@
   .cvv-code-block code {
     font-size: 0.88rem;
     line-height: 1.58;
+  }
+
+  .cvv-article ul:not(.cvv-toc):not(.cvv-list) > li,
+  .cvv-list.cvv-list-ul > li {
+    padding-left: 1.16rem;
+  }
+
+  .cvv-article ol:not(.cvv-toc):not(.cvv-list):not(.cvv-faq-list) > li,
+  .cvv-list.cvv-list-ol:not(.cvv-faq-list) > li {
+    padding-left: 1.8rem;
+  }
+
+  .cvv-article ol:not(.cvv-toc):not(.cvv-list):not(.cvv-faq-list) > li::before,
+  .cvv-list.cvv-list-ol:not(.cvv-faq-list) > li::before {
+    width: 1.28rem;
+    height: 1.28rem;
+    font-size: 0.72rem;
   }
 
   .cvv-kpi-grid {
