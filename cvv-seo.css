@@ -661,6 +661,40 @@
   }
 }
 
+@media (max-width: 640px) {
+  .cvv-article {
+    padding: 16px 12px;
+    font-size: 15px;
+  }
+
+  .cvv-article h1 {
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+  }
+
+  .cvv-article h2 {
+    font-size: 1.4rem;
+  }
+
+  .cvv-article img,
+  .cvv-article p > img,
+  .cvv-article figure > img,
+  .cvv-article .wp-block-image img {
+    width: 100%;
+    max-height: 200px;
+  }
+
+  .cvv-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cvv-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 768px) {
   .cvv-article {
     font-size: 15.5px;
