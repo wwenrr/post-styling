@@ -51,7 +51,6 @@
   color: var(--cvv-mistral-black);
   font-weight: 600;
   line-height: 1.14;
-  text-wrap: balance;
 }
 
 .cvv-article h1 {
@@ -63,6 +62,8 @@
   letter-spacing: -0.032em;
   padding-bottom: 0.44em;
   border-bottom: 0;
+  text-wrap: pretty;
+  max-width: none;
 }
 
 .cvv-article h1::after {
@@ -101,6 +102,7 @@
   font-size: clamp(1.2rem, 2.04vw, 1.48rem);
   line-height: 1.18;
   letter-spacing: -0.012em;
+  text-wrap: balance;
 }
 
 .cvv-article p {
