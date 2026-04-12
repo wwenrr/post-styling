@@ -18,6 +18,8 @@
   --cvv-code-bg: #fffaf0;
   --cvv-code-border: #eeddb2;
   --cvv-code-border-strong: #e4c06c;
+  --cvv-cta-shadow: 0 14px 34px rgba(31, 31, 31, 0.16), 0 4px 12px rgba(250, 82, 15, 0.2);
+  --cvv-cta-shadow-hover: 0 18px 42px rgba(31, 31, 31, 0.22), 0 8px 18px rgba(250, 82, 15, 0.24);
 }
 
 .cvv-article {
@@ -385,6 +387,78 @@
 .cvv-note p,
 .cvv-author p {
   margin: 0.3rem 0;
+}
+
+.cvv-article a.cvv-button-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0.5rem 0 0.3rem;
+  padding: 0.84rem 1.35rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--cvv-white) 28%, var(--cvv-mistral-black));
+  border-radius: 0.95rem;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--cvv-mistral-black) 92%, #000) 0%, var(--cvv-mistral-black) 62%, color-mix(in srgb, var(--cvv-mistral-black) 72%, var(--cvv-sunshine-900)) 100%);
+  color: var(--cvv-white);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  font-weight: 600;
+  box-shadow: var(--cvv-cta-shadow);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.cvv-article a.cvv-button-cta::before {
+  content: '';
+  position: absolute;
+  inset: -30% auto auto -45%;
+  width: 70%;
+  height: 180%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.26) 50%, rgba(255, 255, 255, 0) 85%);
+  transform: translateX(-10%) rotate(14deg);
+  transition: transform 0.45s ease;
+  z-index: -1;
+}
+
+.cvv-article a.cvv-button-cta::after {
+  content: '↗';
+  font-size: 0.85em;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.cvv-article a.cvv-button-cta:hover {
+  color: var(--cvv-white);
+  border-color: color-mix(in srgb, var(--cvv-sunshine-500) 64%, var(--cvv-white));
+  box-shadow: var(--cvv-cta-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.cvv-article a.cvv-button-cta:hover::before {
+  transform: translateX(128%) rotate(14deg);
+}
+
+.cvv-article a.cvv-button-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 22px rgba(31, 31, 31, 0.22);
+}
+
+.cvv-article a.cvv-button-cta:focus-visible {
+  outline: 0;
+  box-shadow: var(--cvv-cta-shadow-hover), 0 0 0 2.5px color-mix(in srgb, var(--cvv-sunshine-500) 70%, var(--cvv-white));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cvv-article a.cvv-button-cta,
+  .cvv-article a.cvv-button-cta::before {
+    transition: none;
+  }
 }
 
 .cvv-author-name {
@@ -820,5 +894,14 @@
 
   .cvv-kpi-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cvv-article a.cvv-button-cta {
+    width: 100%;
+    justify-content: center;
+    margin: 0.7rem 0 0.4rem;
+    padding: 0.92rem 1.05rem 0.88rem;
+    border-radius: 0.86rem;
+    font-size: 0.8rem;
   }
 }
