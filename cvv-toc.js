@@ -37,6 +37,18 @@
       .trim();
   }
 
+  function cleanTocLabel(text) {
+    var source = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!source) return source;
+
+    var normalized = source
+      .replace(/^\d+(?:\.\d+)+(?:\s*[\)\].:-])?\s*/, '')
+      .replace(/^\d+\s*[\)\].:-]\s*/, '')
+      .trim();
+
+    return normalized || source;
+  }
+
   function normalizeLegacyFaq(root) {
     var normalized = [];
 
@@ -163,6 +175,7 @@
     headings.forEach(function (heading, idx) {
       var text = heading.textContent.trim();
       if (!text) return;
+      var label = cleanTocLabel(text);
       if (!heading.id) {
         heading.id = slugify(text) || ('section-' + (idx + 1));
       }
@@ -178,7 +191,7 @@
 
         var a = document.createElement('a');
         a.href = '#' + heading.id;
-        a.textContent = text;
+        a.textContent = label;
         a.className = 'cvv-toc-link cvv-toc-link-h2';
 
         var sub = document.createElement('ul');
@@ -202,7 +215,7 @@
 
       var h3a = document.createElement('a');
       h3a.href = '#' + heading.id;
-      h3a.textContent = text;
+      h3a.textContent = label;
       h3a.className = 'cvv-toc-link cvv-toc-link-h3';
 
       h3row.appendChild(h3a);
