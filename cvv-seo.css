@@ -332,28 +332,43 @@
 }
 
 .cvv-article .cvv-toc-wrap {
-  margin: 1.1rem 0 1.45rem;
-  padding: 0.75rem 0.9rem;
+  position: relative;
+  overflow: hidden;
+  margin: 1.15rem 0 1.55rem;
+  padding: 0.85rem 0.95rem 0.78rem;
   border: 1px solid var(--cvv-toc-border);
-  background: var(--cvv-toc-bg);
+  border-left: 3px solid var(--cvv-sunshine-500);
+  background: linear-gradient(180deg, #fffdf6 0%, var(--cvv-toc-bg) 100%);
+}
+
+.cvv-article .cvv-toc-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cvv-sunshine-300), var(--cvv-mistral-orange), var(--cvv-sunshine-300));
+  opacity: 0.62;
 }
 
 .cvv-article .cvv-toc-head {
   width: 100%;
-  margin: 0.4rem 0 0.2rem;
+  margin: 0;
   border: 0;
-  padding: 0;
+  padding: 0.1rem 0 0.48rem;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  border-bottom: 1px dashed var(--cvv-border);
 }
 
 .cvv-article .cvv-toc-head-label {
-  font-size: 1.06rem;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
   color: var(--cvv-mistral-black);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .cvv-article .cvv-toc-head-arrow {
@@ -381,7 +396,7 @@
   overflow: hidden;
   max-height: 2400px;
   opacity: 1;
-  transition: max-height 0.32s ease, opacity 0.24s ease, margin-top 0.24s ease;
+  transition: max-height 0.3s ease, opacity 0.2s ease, margin-top 0.2s ease;
 }
 
 .cvv-article .cvv-toc-wrap.is-toc-collapsed [data-cvv-toc] {
@@ -391,8 +406,9 @@
 }
 
 .cvv-article .cvv-toc {
-  margin: 0.45rem 0 0.95rem;
-  padding-left: 1.1rem;
+  margin: 0.5rem 0 0.3rem;
+  padding-left: 0;
+  counter-reset: toc-h2;
 }
 
 .cvv-article .cvv-toc,
@@ -414,14 +430,22 @@
 .cvv-article .cvv-toc-row {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.22rem 0;
+  gap: 0.36rem;
+  padding: 0.24rem 0;
 }
 
 .cvv-article .cvv-toc-link {
   color: var(--cvv-black-tint);
-  text-decoration: underline;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
   font-size: 0.95rem;
+  line-height: 1.38;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.cvv-article .cvv-toc-link:hover {
+  color: var(--cvv-mistral-orange);
+  border-bottom-color: currentColor;
 }
 
 .cvv-article .cvv-toc-item-h2 > .cvv-toc-row .cvv-toc-link {
@@ -429,18 +453,40 @@
   font-weight: 500;
 }
 
+.cvv-article .cvv-toc-item-h2 {
+  counter-increment: toc-h2;
+  counter-reset: toc-h3;
+}
+
+.cvv-article .cvv-toc-item-h2 > .cvv-toc-row .cvv-toc-link::before {
+  content: counter(toc-h2) '. ';
+  color: var(--cvv-sunshine-900);
+  font-weight: 600;
+}
+
 .cvv-article .cvv-toc-item-h3 > .cvv-toc-row {
-  padding-left: 1.05rem;
+  padding-left: 0.9rem;
 }
 
 .cvv-article .cvv-toc-sublist {
-  margin-left: 0;
-  padding-left: 0;
-  border-left: 1px solid var(--cvv-border);
+  margin-left: 0.22rem;
+  padding-left: 0.05rem;
+  border-left: 1px dotted var(--cvv-border);
   max-height: 1200px;
   overflow: hidden;
   opacity: 1;
   transition: max-height 0.26s ease, opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.cvv-article .cvv-toc-item-h3 {
+  counter-increment: toc-h3;
+}
+
+.cvv-article .cvv-toc-item-h3 .cvv-toc-link::before {
+  content: counter(toc-h2) '.' counter(toc-h3) ' ';
+  color: var(--cvv-sunshine-700);
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .cvv-article .cvv-toc-toggle {
@@ -454,25 +500,25 @@
 }
 
 .cvv-article .cvv-toc-toggle::before {
-  content: '+';
+  content: '▾';
   display: inline-block;
   width: 16px;
   color: var(--cvv-black-tint);
-  font-size: 14px;
+  font-size: 11px;
   line-height: 1;
   text-align: center;
   border: 0;
   transform: none;
   margin: 0;
-  transition: transform 0.2s ease;
+  transition: transform 0.18s ease;
 }
 
 .cvv-article .cvv-toc-toggle[aria-expanded='false']::before {
-  content: '+';
+  transform: rotate(-90deg);
 }
 
 .cvv-article .cvv-toc-toggle[aria-expanded='true']::before {
-  content: '−';
+  transform: rotate(0deg);
 }
 
 .cvv-article .cvv-toc-item-h2.is-collapsed > .cvv-toc-sublist {
@@ -579,6 +625,19 @@
 
   .cvv-article h3 {
     font-size: 1.15rem;
+  }
+
+  .cvv-article .cvv-toc-wrap {
+    margin: 1rem 0 1.35rem;
+    padding: 0.74rem 0.78rem 0.66rem;
+  }
+
+  .cvv-article .cvv-toc-link {
+    font-size: 0.92rem;
+  }
+
+  .cvv-article .cvv-toc-item-h3 > .cvv-toc-row {
+    padding-left: 0.72rem;
   }
 
   .cvv-kpi-grid {

@@ -128,8 +128,9 @@
     if (!headings.length) return;
 
     var toc = root.querySelector('[data-cvv-toc]');
+    var wrap = toc ? toc.closest('.cvv-toc-wrap') : null;
     if (!toc) {
-      var wrap = document.createElement('nav');
+      wrap = document.createElement('nav');
       wrap.className = 'cvv-toc-wrap';
       wrap.setAttribute('aria-label', 'Table of contents');
 
@@ -142,7 +143,15 @@
 
       wrap.appendChild(title);
       wrap.appendChild(toc);
-      root.insertBefore(wrap, root.firstChild);
+    }
+
+    if (wrap) {
+      var firstH2 = root.querySelector('h2');
+      if (firstH2) {
+        root.insertBefore(wrap, firstH2);
+      } else if (wrap.parentNode !== root) {
+        root.insertBefore(wrap, root.firstChild);
+      }
     }
 
     var ul = document.createElement('ul');
@@ -239,7 +248,7 @@
     toc.innerHTML = '';
     toc.appendChild(ul);
 
-    var wrap = toc.closest('.cvv-toc-wrap');
+    wrap = toc.closest('.cvv-toc-wrap');
     if (wrap && !wrap.querySelector('.cvv-toc-head')) {
       var titleEl = wrap.querySelector('.cvv-toc-title');
       var label = (titleEl && titleEl.textContent && titleEl.textContent.trim()) || 'Table of contents';
