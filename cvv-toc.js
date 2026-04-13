@@ -27,14 +27,169 @@
   }
 
   function hasFaqKeyword(text) {
-    return /\bfaq\b/i.test(String(text || ''));
+    var value = String(text || '').trim();
+    if (!value) return false;
+
+    var folded = value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+    return /\bfaq\b/.test(folded) || /\bcau hoi thuong gap\b/.test(folded);
   }
 
   function cleanFaqQuestion(text) {
     return String(text || '')
       .replace(/\s+/g, ' ')
       .replace(/^faq\s*[:：-]\s*/i, '')
+      .replace(/^\d+\s*[\)\].:-]\s*/, '')
       .trim();
+  }
+
+  function textFromHtml(html) {
+    if (!html) return '';
+
+    var holder = document.createElement('div');
+    holder.innerHTML = html;
+    return holder.textContent ? holder.textContent.replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function parseFaqListItem(item) {
+    var rawHtml = (item && item.innerHTML ? item.innerHTML : '').trim();
+    if (!rawHtml) return null;
+
+    var segments = rawHtml.split(/<br\s*\/?>/i);
+    var questionHtml = segments.shift() || '';
+    var questionText = cleanFaqQuestion(textFromHtml(questionHtml));
+    if (!questionText) {
+      questionText = cleanFaqQuestion(textFromHtml(rawHtml));
+    }
+    if (!questionText) return null;
+
+    var answerHtml = segments.join('<br>').trim();
+    return {
+      questionText: questionText,
+      answerHtml: answerHtml
+    };
+  }
+
+  function buildFaqItem(questionText, answerHtml) {
+    if (!questionText) return null;
+
+    var item = document.createElement('li');
+    item.className = 'cvv-list-item cvv-faq-item';
+
+    var question = document.createElement('span');
+    question.className = 'cvv-faq-question';
+    question.textContent = questionText;
+    item.appendChild(question);
+
+    if (answerHtml) {
+      var answer = document.createElement('div');
+      answer.className = 'cvv-faq-answer';
+      answer.innerHTML = answerHtml;
+      item.appendChild(answer);
+    }
+
+    return item;
+  }
+
+  function buildFaqContainer() {
+    var wrap = document.createElement('div');
+    wrap.className = 'cvv-faq';
+
+    var list = document.createElement('ol');
+    list.className = 'cvv-list cvv-list-ol cvv-faq-list';
+    wrap.appendChild(list);
+
+    return { wrap: wrap, list: list };
+  }
+
+  function normalizeFaqFromLegacyHeadings(faqHeading) {
+    var cursor = faqHeading.nextElementSibling;
+    var qaPairs = [];
+
+    while (cursor && cursor.tagName !== 'H2') {
+      if (cursor.tagName === 'H3') {
+        var questionNode = cursor;
+        var answerNodes = [];
+
+        cursor = cursor.nextElementSibling;
+        while (cursor && cursor.tagName !== 'H2' && cursor.tagName !== 'H3') {
+          var next = cursor.nextElementSibling;
+          var hasRuntimeScript = cursor.querySelector && cursor.querySelector('script[src*="cvv-toc.js"]');
+          if (!hasRuntimeScript) {
+            answerNodes.push(cursor);
+          }
+          cursor = next;
+        }
+
+        qaPairs.push({ questionNode: questionNode, answerNodes: answerNodes });
+        continue;
+      }
+
+      cursor = cursor.nextElementSibling;
+    }
+
+    if (!qaPairs.length) return null;
+
+    var container = buildFaqContainer();
+    qaPairs.forEach(function (pair) {
+      var questionText = cleanFaqQuestion(pair.questionNode.textContent);
+      if (!questionText) return;
+
+      var answer = document.createElement('div');
+      answer.className = 'cvv-faq-a';
+      pair.answerNodes.forEach(function (node) {
+        answer.appendChild(node);
+      });
+
+      var item = buildFaqItem(questionText, answer.innerHTML);
+      if (!item) return;
+
+      container.list.appendChild(item);
+      pair.questionNode.remove();
+    });
+
+    return container.list.children.length ? container.wrap : null;
+  }
+
+  function normalizeFaqFromOrderedList(faqHeading) {
+    var cursor = faqHeading.nextElementSibling;
+    var targetList = null;
+
+    while (cursor && cursor.tagName !== 'H2') {
+      if (
+        cursor.tagName === 'OL' &&
+        cursor.classList &&
+        cursor.classList.contains('cvv-list-ol') &&
+        !cursor.classList.contains('cvv-faq-list')
+      ) {
+        targetList = cursor;
+        break;
+      }
+
+      cursor = cursor.nextElementSibling;
+    }
+
+    if (!targetList) return null;
+
+    var container = buildFaqContainer();
+    Array.from(targetList.children).forEach(function (node) {
+      if (!node || node.tagName !== 'LI') return;
+
+      var parsed = parseFaqListItem(node);
+      if (!parsed) return;
+
+      var item = buildFaqItem(parsed.questionText, parsed.answerHtml);
+      if (!item) return;
+      container.list.appendChild(item);
+    });
+
+    if (!container.list.children.length) return null;
+
+    targetList.replaceWith(container.wrap);
+    return container.wrap;
   }
 
   function cleanTocLabel(text) {
@@ -56,68 +211,16 @@
       if (!hasFaqKeyword(faqHeading.textContent)) return;
       if (faqHeading.dataset.cvvFaqNormalized === '1') return;
 
-      var cursor = faqHeading.nextElementSibling;
-      var qaPairs = [];
+      var wrap = normalizeFaqFromLegacyHeadings(faqHeading);
+      if (!wrap) {
+        wrap = normalizeFaqFromOrderedList(faqHeading);
+      }
+      if (!wrap) return;
 
-      while (cursor && cursor.tagName !== 'H2') {
-        if (cursor.tagName === 'H3') {
-          var questionNode = cursor;
-          var answerNodes = [];
-
-          cursor = cursor.nextElementSibling;
-          while (cursor && cursor.tagName !== 'H2' && cursor.tagName !== 'H3') {
-            var next = cursor.nextElementSibling;
-            var hasRuntimeScript = cursor.querySelector && cursor.querySelector('script[src*="cvv-toc.js"]');
-            if (!hasRuntimeScript) {
-              answerNodes.push(cursor);
-            }
-            cursor = next;
-          }
-
-          qaPairs.push({ questionNode: questionNode, answerNodes: answerNodes });
-          continue;
-        }
-
-        cursor = cursor.nextElementSibling;
+      if (!wrap.parentNode) {
+        faqHeading.insertAdjacentElement('afterend', wrap);
       }
 
-      if (!qaPairs.length) return;
-
-      var wrap = document.createElement('div');
-      wrap.className = 'cvv-faq';
-
-      var list = document.createElement('ol');
-      list.className = 'cvv-list cvv-list-ol cvv-faq-list';
-
-      qaPairs.forEach(function (pair) {
-        var questionText = cleanFaqQuestion(pair.questionNode.textContent);
-        if (!questionText) return;
-
-        var item = document.createElement('li');
-        item.className = 'cvv-list-item cvv-faq-item';
-
-        var question = document.createElement('span');
-        question.className = 'cvv-faq-question';
-        question.textContent = questionText;
-
-        var answer = document.createElement('div');
-        answer.className = 'cvv-faq-a';
-
-        pair.answerNodes.forEach(function (node) {
-          answer.appendChild(node);
-        });
-
-        item.appendChild(question);
-        item.appendChild(answer);
-        list.appendChild(item);
-
-        pair.questionNode.remove();
-      });
-
-      if (!list.children.length) return;
-
-      wrap.appendChild(list);
-      faqHeading.insertAdjacentElement('afterend', wrap);
       faqHeading.dataset.cvvFaqNormalized = '1';
       normalized.push(wrap);
     });
