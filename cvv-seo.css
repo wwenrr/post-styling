@@ -22,6 +22,26 @@
   --cvv-cta-shadow-hover: 0 15px 34px rgba(250, 82, 15, 0.24), 0 6px 16px rgba(255, 161, 16, 0.26);
 }
 
+figure.cvv-cover-image {
+  width: min(100%, 960px);
+  margin: 0.9rem auto 1.35rem;
+}
+
+figure.cvv-cover-image > a {
+  display: block;
+}
+
+figure.cvv-cover-image > img {
+  display: block;
+  width: 100%;
+  margin: 0;
+  aspect-ratio: 21 / 9;
+  max-height: clamp(240px, 48vh, 440px);
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 0.9rem;
+}
+
 .cvv-article {
   font-family: var(--cvv-font-stack);
   color: var(--cvv-mistral-black);
@@ -853,6 +873,17 @@
 }
 
 @media (max-width: 768px) {
+  figure.cvv-cover-image {
+    width: 100%;
+    margin: 0.72rem auto 1rem;
+  }
+
+  figure.cvv-cover-image > img {
+    aspect-ratio: 16 / 9;
+    max-height: clamp(200px, 56vw, 300px);
+    border-radius: 0.56rem;
+  }
+
   .cvv-article {
     font-size: 15.5px;
     line-height: 1.7;
