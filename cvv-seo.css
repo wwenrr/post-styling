@@ -18,6 +18,7 @@
   --cvv-code-bg: #fffaf0;
   --cvv-code-border: #eeddb2;
   --cvv-code-border-strong: #e4c06c;
+  --cvv-cover-image-scale: 1.3;
   --cvv-cta-shadow: 0 12px 28px rgba(250, 82, 15, 0.2), 0 4px 12px rgba(255, 161, 16, 0.22);
   --cvv-cta-shadow-hover: 0 15px 34px rgba(250, 82, 15, 0.24), 0 6px 16px rgba(255, 161, 16, 0.26);
 }
@@ -25,13 +26,16 @@
 figure.cvv-cover-image {
   width: min(100%, 960px);
   margin: 0.9rem auto 1.35rem;
+  border-radius: 0.9rem;
+  overflow: hidden;
 }
 
 figure.cvv-cover-image > a {
   display: block;
 }
 
-figure.cvv-cover-image > img {
+figure.cvv-cover-image > img,
+figure.cvv-cover-image > a > img {
   display: block;
   width: 100%;
   margin: 0;
@@ -39,7 +43,9 @@ figure.cvv-cover-image > img {
   max-height: clamp(240px, 48vh, 440px);
   object-fit: cover;
   object-position: center center;
-  border-radius: 0.9rem;
+  border-radius: inherit;
+  transform: scale(var(--cvv-cover-image-scale));
+  transform-origin: center center;
 }
 
 .cvv-article {
@@ -876,12 +882,13 @@ figure.cvv-cover-image > img {
   figure.cvv-cover-image {
     width: 100%;
     margin: 0.72rem auto 1rem;
+    border-radius: 0.56rem;
   }
 
-  figure.cvv-cover-image > img {
+  figure.cvv-cover-image > img,
+  figure.cvv-cover-image > a > img {
     aspect-ratio: 16 / 9;
     max-height: clamp(200px, 56vw, 300px);
-    border-radius: 0.56rem;
   }
 
   .cvv-article {
