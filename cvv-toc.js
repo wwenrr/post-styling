@@ -192,6 +192,34 @@
     return container.wrap;
   }
 
+  function normalizeFaqFromStandaloneOrderedList(root) {
+    var normalized = [];
+
+    Array.from(root.querySelectorAll('ol.cvv-list-ol:not(.cvv-faq-list)')).forEach(function (list) {
+      if (!list || list.closest('.cvv-faq')) return;
+
+      var parsedItems = Array.from(list.children)
+        .filter(function (node) { return node && node.tagName === 'LI'; })
+        .map(function (node) { return parseFaqListItem(node); });
+
+      if (!parsedItems.length) return;
+      if (!parsedItems.every(function (item) { return !!item; })) return;
+
+      var container = buildFaqContainer();
+      parsedItems.forEach(function (parsed) {
+        var item = buildFaqItem(parsed.questionText, parsed.answerHtml);
+        if (item) container.list.appendChild(item);
+      });
+
+      if (!container.list.children.length) return;
+
+      list.replaceWith(container.wrap);
+      normalized.push(container.wrap);
+    });
+
+    return normalized;
+  }
+
   function cleanTocLabel(text) {
     var source = String(text || '').replace(/\s+/g, ' ').trim();
     if (!source) return source;
@@ -222,6 +250,10 @@
       }
 
       faqHeading.dataset.cvvFaqNormalized = '1';
+      normalized.push(wrap);
+    });
+
+    normalizeFaqFromStandaloneOrderedList(root).forEach(function (wrap) {
       normalized.push(wrap);
     });
 
