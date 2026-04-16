@@ -313,7 +313,7 @@ figure.cvv-cover-image > a > img {
 }
 
 .cvv-list,
-.cvv-article ul:not(.cvv-toc):not(.cvv-list),
+.cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist),
 .cvv-article ol:not(.cvv-toc):not(.cvv-list) {
   margin: 0.95rem 0 1.15rem;
   color: var(--cvv-black-tint);
@@ -324,13 +324,13 @@ figure.cvv-cover-image > a > img {
   padding-left: 0;
 }
 
-.cvv-article ul:not(.cvv-toc):not(.cvv-list),
+.cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist),
 .cvv-list.cvv-list-ul {
   list-style: none;
   padding-left: 0.1rem;
 }
 
-.cvv-article ul:not(.cvv-toc):not(.cvv-list) > li,
+.cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist) > li,
 .cvv-list.cvv-list-ul > li {
   position: relative;
   margin: 0.42rem 0;
@@ -339,7 +339,7 @@ figure.cvv-cover-image > a > img {
   background: transparent;
 }
 
-.cvv-article ul:not(.cvv-toc):not(.cvv-list) > li::before,
+.cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist) > li::before,
 .cvv-list.cvv-list-ul > li::before {
   content: '';
   position: absolute;
@@ -968,7 +968,7 @@ figure.cvv-cover-image > a > img {
     line-height: 1.58;
   }
 
-  .cvv-article ul:not(.cvv-toc):not(.cvv-list) > li,
+  .cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist) > li,
   .cvv-list.cvv-list-ul > li {
     padding-left: 1.16rem;
   }
