@@ -704,6 +704,18 @@ figure.cvv-cover-image > a > img {
   background: rgba(255, 161, 16, 0.08);
 }
 
+.cvv-article .cvv-toc-item-h2.cvv-toc-item-leaf > .cvv-toc-row {
+  cursor: default;
+}
+
+.cvv-article .cvv-toc-item-h2.cvv-toc-item-leaf > .cvv-toc-row::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+}
+
 .cvv-article .cvv-toc-item-h2 {
   counter-increment: toc-h2;
   counter-reset: toc-h3;

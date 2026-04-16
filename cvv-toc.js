@@ -377,6 +377,7 @@
 
       var hasChildren = sub.children.length > 0;
       if (!hasChildren) {
+        item.classList.add('cvv-toc-item-leaf');
         sub.remove();
         return;
       }
