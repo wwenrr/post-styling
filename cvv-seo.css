@@ -130,7 +130,9 @@ figure.cvv-cover-image > a > img {
   font-size: clamp(1.2rem, 2.04vw, 1.48rem);
   line-height: 1.18;
   letter-spacing: -0.012em;
-  text-wrap: balance;
+  text-wrap: pretty;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .cvv-article p {
