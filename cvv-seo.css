@@ -48,12 +48,24 @@ figure.cvv-cover-image > a > img {
   transform-origin: center center;
 }
 
-:is(h1.wp-block-post-title, .wp-block-post-title, .entry-title, .post-title) {
-  max-width: none !important;
-  text-wrap: pretty !important;
+h1.wp-block-post-title {
+  max-width: min(100%, 22ch) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-wrap: balance !important;
   overflow-wrap: normal !important;
   word-break: normal !important;
   hyphens: none !important;
+}
+
+.wp-block-post-content > .wp-block-post-featured-image {
+  overflow: hidden;
+  border-radius: 0.9rem;
+}
+
+.wp-block-post-content > .wp-block-post-featured-image :where(img) {
+  transform: scale(var(--cvv-cover-image-scale));
+  transform-origin: center center;
 }
 
 .cvv-article {
