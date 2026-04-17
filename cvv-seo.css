@@ -758,12 +758,12 @@ h1.wp-block-post-title {
 }
 
 .cvv-article .cvv-toc-item-h3 > .cvv-toc-row {
-  padding-left: 0.9rem;
+  padding-left: 1.25rem;
 }
 
 .cvv-article .cvv-toc-sublist {
-  margin-left: 0.22rem;
-  padding-left: 0.05rem;
+  margin-left: 0.45rem;
+  padding-left: 0.18rem;
   border-left: 1px dotted var(--cvv-border);
   max-height: 1200px;
   overflow: hidden;
@@ -986,7 +986,7 @@ h1.wp-block-post-title {
   }
 
   .cvv-article .cvv-toc-item-h3 > .cvv-toc-row {
-    padding-left: 0.72rem;
+    padding-left: 1.05rem;
   }
 
   .cvv-code-block {
