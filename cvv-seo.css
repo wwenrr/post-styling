@@ -1,26 +1,26 @@
-/* CVV SEO article styling pack — flat editorial variant */
+/* CVV SEO article styling pack — Agoobi enterprise editorial variant */
 :root {
-  --cvv-font-stack: "Be Vietnam Pro", "Inter", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --cvv-mistral-orange: #fa520f;
-  --cvv-flame: #fb6424;
-  --cvv-sunshine-900: #ff8a00;
-  --cvv-sunshine-700: #ffa110;
-  --cvv-sunshine-500: #ffb83e;
-  --cvv-sunshine-300: #ffd06a;
-  --cvv-block-gold: #ffe295;
+  --cvv-font-stack: "Be Vietnam Pro", "Plus Jakarta Sans", "Inter", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --cvv-mistral-orange: #00c2a8;
+  --cvv-flame: #10bfae;
+  --cvv-sunshine-900: #0a2540;
+  --cvv-sunshine-700: #00c2a8;
+  --cvv-sunshine-500: #17c8b2;
+  --cvv-sunshine-300: #bdefe8;
+  --cvv-block-gold: #eaf7f5;
 
   --cvv-white: #ffffff;
-  --cvv-mistral-black: #1f1f1f;
-  --cvv-black-tint: #3d3d3d;
-  --cvv-border: #e8dfc7;
-  --cvv-toc-bg: #fff9ec;
-  --cvv-toc-border: #f4e2b2;
-  --cvv-code-bg: #fffaf0;
-  --cvv-code-border: #eeddb2;
-  --cvv-code-border-strong: #e4c06c;
+  --cvv-mistral-black: #0a2540;
+  --cvv-black-tint: #4b5563;
+  --cvv-border: #ddf1ee;
+  --cvv-toc-bg: #f4fbfa;
+  --cvv-toc-border: #ddf1ee;
+  --cvv-code-bg: #f4fbfa;
+  --cvv-code-border: #ddf1ee;
+  --cvv-code-border-strong: #00c2a8;
   --cvv-cover-image-scale: 1.3;
-  --cvv-cta-shadow: 0 12px 28px rgba(250, 82, 15, 0.2), 0 4px 12px rgba(255, 161, 16, 0.22);
-  --cvv-cta-shadow-hover: 0 15px 34px rgba(250, 82, 15, 0.24), 0 6px 16px rgba(255, 161, 16, 0.26);
+  --cvv-cta-shadow: 0 12px 30px rgba(10, 37, 64, 0.1);
+  --cvv-cta-shadow-hover: 0 14px 34px rgba(10, 37, 64, 0.14);
 }
 
 figure.cvv-cover-image {
@@ -79,8 +79,8 @@ h1.wp-block-post-title {
 .cvv-article {
   font-family: var(--cvv-font-stack);
   color: var(--cvv-mistral-black);
-  font-size: 16.5px;
-  line-height: 1.74;
+  font-size: 17px;
+  line-height: 1.76;
   letter-spacing: normal;
   max-width: 980px;
   margin: 0 auto;
@@ -129,7 +129,7 @@ h1.wp-block-post-title {
   bottom: 0;
   width: min(10.5rem, 34vw);
   height: 3px;
-  background: linear-gradient(90deg, var(--cvv-mistral-orange) 0%, var(--cvv-sunshine-500) 100%);
+  background: linear-gradient(90deg, var(--cvv-mistral-black) 0%, var(--cvv-mistral-orange) 100%);
 }
 
 .cvv-article h2 {
@@ -141,7 +141,7 @@ h1.wp-block-post-title {
   letter-spacing: -0.022em;
   padding: 0.08rem 0 0.38rem;
   border-left: 0;
-  border-bottom: 1px solid #f4e0b4;
+  border-bottom: 1px solid var(--cvv-border);
 }
 
 .cvv-article h2::after {
@@ -174,7 +174,7 @@ h1.wp-block-post-title {
 }
 
 .cvv-article em {
-  color: var(--cvv-sunshine-900);
+  color: var(--cvv-mistral-orange);
   font-style: italic;
 }
 
@@ -248,7 +248,7 @@ h1.wp-block-post-title {
 .cvv-article blockquote {
   margin: 1rem 0 1.25rem;
   padding: 0.35rem 0 0.35rem 0.9rem;
-  border-left: 3px solid var(--cvv-sunshine-500);
+  border-left: 3px solid var(--cvv-mistral-orange);
   background: transparent;
 }
 
@@ -280,13 +280,13 @@ h1.wp-block-post-title {
 .cvv-code-block {
   margin: 1.05rem 0 1.25rem;
   padding: 0.86rem 0.98rem;
-  background: linear-gradient(180deg, #fffdf7 0%, var(--cvv-code-bg) 100%);
+  background: linear-gradient(180deg, var(--cvv-white) 0%, var(--cvv-code-bg) 100%);
   border: 1px solid var(--cvv-code-border);
   border-left: 3px solid var(--cvv-sunshine-700);
   border-radius: 4px;
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: #d7be82 transparent;
+  scrollbar-color: rgba(0, 194, 168, 0.6) transparent;
 }
 
 .cvv-code-block code {
@@ -335,7 +335,7 @@ h1.wp-block-post-title {
   text-transform: uppercase;
   letter-spacing: 0.045em;
   border-bottom: 2px solid var(--cvv-sunshine-700);
-  background: transparent;
+  background: var(--cvv-toc-bg);
 }
 
 .cvv-table tbody tr:hover td {
@@ -378,7 +378,7 @@ h1.wp-block-post-title {
   width: 0.46rem;
   height: 0.46rem;
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--cvv-sunshine-700), var(--cvv-mistral-orange));
+  background: var(--cvv-mistral-orange);
   transform: translateY(-50%);
 }
 
@@ -412,8 +412,8 @@ h1.wp-block-post-title {
   justify-content: center;
   border: 1px solid var(--cvv-code-border);
   border-radius: 999px;
-  background: #fff4dd;
-  color: var(--cvv-sunshine-900);
+  background: var(--cvv-toc-bg);
+  color: var(--cvv-mistral-black);
   font-size: 0.76rem;
   line-height: 1;
   font-weight: 600;
@@ -479,11 +479,10 @@ h1.wp-block-post-title {
   gap: 0.55rem;
   margin: 0.6rem auto 0.42rem;
   padding: 0.84rem 1.35rem 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--cvv-sunshine-700) 58%, #a35e1f);
-  border-radius: 0.95rem;
-  background:
-    linear-gradient(145deg, #ffefc8 0%, #ffd790 45%, #ffc169 100%);
-  color: #2c190d;
+  border: 1px solid var(--cvv-mistral-black);
+  border-radius: 8px;
+  background: var(--cvv-mistral-black);
+  color: var(--cvv-white);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -493,19 +492,11 @@ h1.wp-block-post-title {
   box-shadow: var(--cvv-cta-shadow);
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
 .cvv-article a.cvv-button-cta::before {
-  content: '';
-  position: absolute;
-  inset: -30% auto auto -45%;
-  width: 70%;
-  height: 180%;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 85%);
-  transform: translateX(-10%) rotate(14deg);
-  transition: transform 0.45s ease;
-  z-index: -1;
+  content: none;
 }
 
 .cvv-article a.cvv-button-cta::after {
@@ -516,24 +507,23 @@ h1.wp-block-post-title {
 }
 
 .cvv-article a.cvv-button-cta:hover {
-  color: #2c190d;
-  border-color: color-mix(in srgb, var(--cvv-sunshine-900) 64%, #6b3a16);
+  color: var(--cvv-white);
+  background: #123556;
+  border-color: var(--cvv-mistral-orange);
   box-shadow: var(--cvv-cta-shadow-hover);
-  transform: translateY(-2px);
 }
 
 .cvv-article a.cvv-button-cta:hover::before {
-  transform: translateX(128%) rotate(14deg);
+  content: none;
 }
 
 .cvv-article a.cvv-button-cta:active {
-  transform: translateY(0);
-  box-shadow: 0 8px 18px rgba(250, 82, 15, 0.22);
+  box-shadow: 0 8px 18px rgba(10, 37, 64, 0.12);
 }
 
 .cvv-article a.cvv-button-cta:focus-visible {
   outline: 0;
-  box-shadow: var(--cvv-cta-shadow-hover), 0 0 0 2.5px color-mix(in srgb, var(--cvv-sunshine-500) 70%, var(--cvv-white));
+  box-shadow: var(--cvv-cta-shadow-hover), 0 0 0 2.5px rgba(0, 194, 168, 0.45);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -569,7 +559,7 @@ h1.wp-block-post-title {
 .cvv-kpi strong {
   display: block;
   margin: 0;
-  color: var(--cvv-mistral-orange);
+  color: var(--cvv-mistral-black);
   font-size: 1.35rem;
   line-height: 1.1;
   font-weight: 500;
@@ -590,12 +580,12 @@ h1.wp-block-post-title {
   flex: 1;
 }
 
-.cvv-block-identity .block-yellow { background: #ffd900; }
-.cvv-block-identity .block-gold { background: #ffe295; }
-.cvv-block-identity .block-amber { background: #ffa110; }
-.cvv-block-identity .block-orange { background: #ff8105; }
-.cvv-block-identity .block-flame { background: #fb6424; }
-.cvv-block-identity .block-mistral { background: #fa520f; }
+.cvv-block-identity .block-yellow { background: #eaf7f5; }
+.cvv-block-identity .block-gold { background: #bdefe8; }
+.cvv-block-identity .block-amber { background: #00c2a8; }
+.cvv-block-identity .block-orange { background: #123556; }
+.cvv-block-identity .block-flame { background: #0a2540; }
+.cvv-block-identity .block-mistral { background: #061a2d; }
 
 .cvv-article .cvv-toc-title {
   display: none;
@@ -608,7 +598,7 @@ h1.wp-block-post-title {
   padding: 0.85rem 0.95rem 0.78rem;
   border: 1px solid var(--cvv-toc-border);
   border-left: 3px solid var(--cvv-sunshine-500);
-  background: linear-gradient(180deg, #fffdf6 0%, var(--cvv-toc-bg) 100%);
+  background: linear-gradient(180deg, var(--cvv-white) 0%, var(--cvv-toc-bg) 100%);
 }
 
 .cvv-article .cvv-toc-wrap::before {
@@ -616,7 +606,7 @@ h1.wp-block-post-title {
   position: absolute;
   inset: 0 0 auto 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--cvv-sunshine-300), var(--cvv-mistral-orange), var(--cvv-sunshine-300));
+  background: linear-gradient(90deg, var(--cvv-mistral-black), var(--cvv-mistral-orange), var(--cvv-sunshine-300));
   opacity: 0.62;
 }
 
@@ -731,7 +721,7 @@ h1.wp-block-post-title {
 }
 
 .cvv-article .cvv-toc-item-h2 > .cvv-toc-row:hover {
-  background: rgba(255, 161, 16, 0.08);
+  background: rgba(0, 194, 168, 0.08);
 }
 
 .cvv-article .cvv-toc-item-h2.cvv-toc-item-leaf > .cvv-toc-row {
@@ -900,13 +890,11 @@ h1.wp-block-post-title {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transform: translateY(-2px);
-  transition: max-height 0.3s ease, opacity 0.24s ease, transform 0.24s ease;
+  transition: max-height 0.3s ease, opacity 0.24s ease;
 }
 
 .cvv-article .cvv-faq-item.is-open .cvv-faq-a {
   opacity: 1;
-  transform: translateY(0);
   margin: 0 0 0.82rem;
 }
 

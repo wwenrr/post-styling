@@ -54,6 +54,31 @@
     return holder.textContent ? holder.textContent.replace(/\s+/g, ' ').trim() : '';
   }
 
+  function labelsFor(root) {
+    var language = root && root.getAttribute('data-cvv-language');
+    var isVietnamese = String(language || '').toLowerCase().indexOf('vi') === 0;
+
+    if (isVietnamese) {
+      return {
+        tocTitle: 'Mục lục',
+        expandSublist: 'Mở rộng mục lục con',
+        collapseSublist: 'Thu gọn mục lục con',
+        toggleSublist: 'Mở rộng/thu gọn mục lục con',
+        expandAll: 'Mở rộng tất cả',
+        collapseAll: 'Thu gọn tất cả'
+      };
+    }
+
+    return {
+      tocTitle: 'Table of contents',
+      expandSublist: 'Expand subsection',
+      collapseSublist: 'Collapse subsection',
+      toggleSublist: 'Expand/collapse subsection',
+      expandAll: 'Expand all',
+      collapseAll: 'Collapse all'
+    };
+  }
+
   function parseFaqListItem(item) {
     var rawHtml = (item && item.innerHTML ? item.innerHTML : '').trim();
     if (!rawHtml) return null;
@@ -273,17 +298,18 @@
   function buildTOC(root) {
     var headings = root.querySelectorAll('h2, h3');
     if (!headings.length) return;
+    var labels = labelsFor(root);
 
     var toc = root.querySelector('[data-cvv-toc]');
     var wrap = toc ? toc.closest('.cvv-toc-wrap') : null;
     if (!toc) {
       wrap = document.createElement('nav');
       wrap.className = 'cvv-toc-wrap';
-      wrap.setAttribute('aria-label', 'Table of contents');
+      wrap.setAttribute('aria-label', labels.tocTitle);
 
       var title = document.createElement('div');
       title.className = 'cvv-toc-title';
-      title.textContent = 'Table of contents';
+      title.textContent = labels.tocTitle;
 
       toc = document.createElement('div');
       toc.setAttribute('data-cvv-toc', '');
@@ -307,7 +333,7 @@
     function setTocSectionExpanded(item, btn, expanded) {
       btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       btn.textContent = '';
-      btn.setAttribute('aria-label', expanded ? 'Thu gọn mục lục con' : 'Mở rộng mục lục con');
+      btn.setAttribute('aria-label', expanded ? labels.collapseSublist : labels.expandSublist);
       item.classList.toggle('is-collapsed', !expanded);
     }
 
@@ -386,9 +412,9 @@
       btn.type = 'button';
       btn.className = 'cvv-toc-toggle';
       btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Mở rộng mục lục con');
+      btn.setAttribute('aria-label', labels.expandSublist);
       btn.textContent = '';
-      btn.setAttribute('title', 'Mở rộng/thu gọn mục lục con');
+      btn.setAttribute('title', labels.toggleSublist);
 
       btn.addEventListener('click', function (event) {
         event.stopPropagation();
@@ -412,13 +438,23 @@
     wrap = toc.closest('.cvv-toc-wrap');
     if (wrap && !wrap.querySelector('.cvv-toc-head')) {
       var titleEl = wrap.querySelector('.cvv-toc-title');
-      var label = (titleEl && titleEl.textContent && titleEl.textContent.trim()) || 'Table of contents';
+      var label = (titleEl && titleEl.textContent && titleEl.textContent.trim()) || labels.tocTitle;
 
       var headBtn = document.createElement('button');
       headBtn.type = 'button';
       headBtn.className = 'cvv-toc-head';
       headBtn.setAttribute('aria-expanded', 'true');
-      headBtn.innerHTML = '<span class="cvv-toc-head-label">' + label + '</span><span class="cvv-toc-head-arrow" aria-hidden="true"></span>';
+
+      var headLabel = document.createElement('span');
+      headLabel.className = 'cvv-toc-head-label';
+      headLabel.textContent = label;
+
+      var headArrow = document.createElement('span');
+      headArrow.className = 'cvv-toc-head-arrow';
+      headArrow.setAttribute('aria-hidden', 'true');
+
+      headBtn.appendChild(headLabel);
+      headBtn.appendChild(headArrow);
 
       headBtn.addEventListener('click', function () {
         var expanded = headBtn.getAttribute('aria-expanded') === 'true';
@@ -436,7 +472,7 @@
       var collapseAll = document.createElement('button');
       collapseAll.type = 'button';
       collapseAll.className = 'cvv-toc-collapse-all';
-      collapseAll.textContent = 'Mở rộng tất cả';
+      collapseAll.textContent = labels.expandAll;
       collapseAll.setAttribute('data-state', 'collapsed');
 
       collapseAll.addEventListener('click', function () {
@@ -447,7 +483,7 @@
           setTocSectionExpanded(item, btn, !collapsing);
         });
         collapseAll.setAttribute('data-state', collapsing ? 'collapsed' : 'expanded');
-        collapseAll.textContent = collapsing ? 'Mở rộng tất cả' : 'Thu gọn tất cả';
+        collapseAll.textContent = collapsing ? labels.expandAll : labels.collapseAll;
       });
 
       wrap.appendChild(collapseAll);
@@ -501,7 +537,17 @@
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'cvv-faq-trigger';
-        btn.innerHTML = '<span class="cvv-faq-trigger-text">' + questionText + '</span><span class="cvv-faq-trigger-arrow" aria-hidden="true"></span>';
+
+        var btnText = document.createElement('span');
+        btnText.className = 'cvv-faq-trigger-text';
+        btnText.textContent = questionText;
+
+        var btnArrow = document.createElement('span');
+        btnArrow.className = 'cvv-faq-trigger-arrow';
+        btnArrow.setAttribute('aria-hidden', 'true');
+
+        btn.appendChild(btnText);
+        btn.appendChild(btnArrow);
 
         var open = idx === 0;
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
