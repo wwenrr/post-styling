@@ -313,6 +313,16 @@
         link.classList.toggle('is-active', active);
         if (active) {
           link.setAttribute('aria-current', 'true');
+          var activeParent = link.closest('.cvv-toc-item-h2');
+          if (!activeParent) {
+            activeParent = link.closest('.cvv-toc-sublist') &&
+              link.closest('.cvv-toc-sublist').closest('.cvv-toc-item-h2');
+          }
+          var parentToggle = activeParent && activeParent.querySelector(':scope > .cvv-toc-row .cvv-toc-toggle');
+          if (activeParent && parentToggle) {
+            activeParent.classList.remove('is-collapsed');
+            parentToggle.setAttribute('aria-expanded', 'true');
+          }
         } else {
           link.removeAttribute('aria-current');
         }
@@ -457,6 +467,7 @@
       }
     });
 
+    var expandableIndex = 0;
     ul.querySelectorAll('.cvv-toc-item-h2').forEach(function (item) {
       var sub = item.querySelector('.cvv-toc-sublist');
       var row = item.querySelector('.cvv-toc-row');
@@ -490,7 +501,8 @@
       });
 
       row.insertBefore(btn, row.firstChild);
-      setTocSectionExpanded(item, btn, false);
+      setTocSectionExpanded(item, btn, expandableIndex === 0);
+      expandableIndex += 1;
     });
 
     toc.innerHTML = '';

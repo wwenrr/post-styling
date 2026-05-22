@@ -15,11 +15,14 @@
   --cvv-border: #ddf1ee;
   --cvv-toc-bg: #f4fbfa;
   --cvv-toc-border: #ddf1ee;
+  --cvv-surface-1: #f4fbfa;
+  --cvv-surface-2: #eaf7f5;
   --cvv-code-bg: #f4fbfa;
   --cvv-code-border: #ddf1ee;
   --cvv-code-border-strong: #00c2a8;
   --cvv-surface-glow: rgba(0, 194, 168, 0.12);
   --cvv-navy-shadow: rgba(10, 37, 64, 0.08);
+  --cvv-navy-shadow-soft: rgba(10, 37, 64, 0.05);
   --cvv-cover-image-scale: 1.3;
   --cvv-cta-shadow: 0 12px 30px rgba(10, 37, 64, 0.1);
   --cvv-cta-shadow-hover: 0 14px 34px rgba(10, 37, 64, 0.14);
@@ -55,12 +58,21 @@ h1.wp-block-post-title {
   max-width: min(100%, 30ch) !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-bottom: 0.34em !important;
+  padding-bottom: 0.42em !important;
   text-wrap: pretty !important;
   overflow-wrap: normal !important;
   word-break: normal !important;
   hyphens: none !important;
-  line-height: 1.16 !important;
+  line-height: 1.13 !important;
+  color: var(--cvv-mistral-black) !important;
+}
+
+h1.wp-block-post-title,
+body.single-post .single-post-header .display-md,
+.single-post-header h1.display-md {
+  text-wrap: pretty !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
 }
 
 h1.wp-block-post-title::after {
@@ -68,11 +80,33 @@ h1.wp-block-post-title::after {
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: min(9rem, 34vw);
-  height: 3px;
-  background: linear-gradient(90deg, var(--cvv-mistral-black), var(--cvv-mistral-orange));
+  width: min(11rem, 42vw);
+  height: 4px;
+  background: linear-gradient(90deg, var(--cvv-mistral-black) 0%, var(--cvv-mistral-orange) 52%, rgba(0, 194, 168, 0.08) 100%);
   border-radius: 999px;
   transform: translateX(-50%);
+  box-shadow: 0 10px 28px rgba(0, 194, 168, 0.22);
+}
+
+body.single-post .single-post-header .display-md,
+.single-post-header h1.display-md {
+  position: relative;
+  padding-bottom: 0.42em;
+  color: var(--cvv-mistral-black) !important;
+}
+
+body.single-post .single-post-header .display-md::after,
+.single-post-header h1.display-md::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(11rem, 42vw);
+  height: 4px;
+  background: linear-gradient(90deg, var(--cvv-mistral-black) 0%, var(--cvv-mistral-orange) 52%, rgba(0, 194, 168, 0.08) 100%);
+  border-radius: 999px;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 28px rgba(0, 194, 168, 0.22);
 }
 
 .wp-block-post-content > .wp-block-post-featured-image {
@@ -96,9 +130,9 @@ h1.wp-block-post-title::after {
   font-family: var(--cvv-font-stack);
   color: var(--cvv-mistral-black);
   font-size: 17px;
-  line-height: 1.76;
+  line-height: 1.78;
   letter-spacing: normal;
-  max-width: 980px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 0;
   background: transparent;
@@ -121,18 +155,18 @@ h1.wp-block-post-title::after {
 .cvv-article h6 {
   margin: 1.42em 0 0.48em;
   color: var(--cvv-mistral-black);
-  font-weight: 600;
-  line-height: 1.14;
+  font-weight: 700;
+  line-height: 1.16;
 }
 
 .cvv-article h1 {
   position: relative;
   margin-top: 0.16em;
-  margin-bottom: 0.62em;
+  margin-bottom: 0.72em;
   font-size: clamp(2.08rem, 4.7vw, 3.16rem);
   line-height: 1.03;
   letter-spacing: -0.032em;
-  padding-bottom: 0.44em;
+  padding-bottom: 0.5em;
   border-bottom: 0;
   text-wrap: pretty;
   max-width: none;
@@ -143,33 +177,35 @@ h1.wp-block-post-title::after {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: min(10.5rem, 34vw);
-  height: 3px;
-  background: linear-gradient(90deg, var(--cvv-mistral-black) 0%, var(--cvv-mistral-orange) 100%);
+  width: min(11.5rem, 45vw);
+  height: 4px;
+  background: linear-gradient(90deg, var(--cvv-mistral-black) 0%, var(--cvv-mistral-orange) 58%, rgba(0, 194, 168, 0.08) 100%);
   border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0, 194, 168, 0.18);
 }
 
 .cvv-article h2 {
   position: relative;
-  margin-top: 1.55em;
-  margin-bottom: 0.56em;
-  font-size: clamp(1.52rem, 2.85vw, 2.14rem);
-  line-height: 1.1;
-  letter-spacing: -0.022em;
-  padding: 0.08rem 0 0.52rem 0.86rem;
-  border-left: 0;
-  border-bottom: 1px solid var(--cvv-border);
+  margin-top: 3.15rem;
+  margin-bottom: 1.05rem;
+  font-size: clamp(1.72rem, 3vw, 2.28rem);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  padding: 0.72rem 0 0.84rem 1.05rem;
+  border-bottom: 1px solid rgba(221, 241, 238, 0.9);
+  text-wrap: pretty;
 }
 
 .cvv-article h2::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.16em;
-  bottom: 0.72rem;
-  width: 3px;
-  background: linear-gradient(180deg, var(--cvv-mistral-black), var(--cvv-mistral-orange));
+  top: 0.64rem;
+  bottom: 0.84rem;
+  width: 4px;
+  background: linear-gradient(180deg, var(--cvv-mistral-orange), var(--cvv-mistral-black));
   border-radius: 999px;
+  box-shadow: 0 0 0 5px rgba(0, 194, 168, 0.09);
 }
 
 .cvv-article h2::after {
@@ -177,18 +213,20 @@ h1.wp-block-post-title::after {
   position: absolute;
   left: 0;
   bottom: -1px;
-  width: min(6.6rem, 20vw);
-  height: 2px;
-  background: var(--cvv-sunshine-700);
+  width: min(9.5rem, 34vw);
+  height: 3px;
+  background: linear-gradient(90deg, var(--cvv-sunshine-700), rgba(0, 194, 168, 0));
   border-radius: 999px;
 }
 
 .cvv-article h3 {
   position: relative;
-  font-size: clamp(1.2rem, 2.04vw, 1.48rem);
+  margin-top: 2.35rem;
+  margin-bottom: 0.9rem;
+  font-size: clamp(1.28rem, 2.04vw, 1.58rem);
   line-height: 1.18;
-  letter-spacing: -0.012em;
-  padding-left: 1rem;
+  letter-spacing: -0.015em;
+  padding-left: 1.22rem;
   text-wrap: pretty;
   overflow-wrap: normal;
   word-break: normal;
@@ -198,13 +236,23 @@ h1.wp-block-post-title::after {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.47em;
-  width: 0.42rem;
-  height: 0.42rem;
-  border: 2px solid var(--cvv-mistral-orange);
+  top: 0.38em;
+  width: 0.58rem;
+  height: 0.58rem;
+  border: 2px solid rgba(0, 194, 168, 0.55);
   border-radius: 999px;
   background: var(--cvv-white);
   box-shadow: 0 0 0 4px var(--cvv-surface-glow);
+}
+
+.cvv-article h3::after {
+  content: '';
+  position: absolute;
+  left: 0.26rem;
+  top: calc(0.38em + 0.58rem);
+  width: 1px;
+  height: 0.88rem;
+  background: linear-gradient(180deg, rgba(0, 194, 168, 0.42), rgba(0, 194, 168, 0));
 }
 
 .cvv-article :is(h1, h2, h3):target {
@@ -216,13 +264,13 @@ h1.wp-block-post-title::after {
 }
 
 .cvv-article p {
-  margin: 0.92em 0;
+  margin: 0 0 1.28rem;
   color: var(--cvv-black-tint);
 }
 
 .cvv-article strong {
   color: var(--cvv-mistral-black);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .cvv-article em {
@@ -298,15 +346,21 @@ h1.wp-block-post-title::after {
 }
 
 .cvv-article blockquote {
-  margin: 1rem 0 1.25rem;
-  padding: 0.35rem 0 0.35rem 0.9rem;
-  border-left: 3px solid var(--cvv-mistral-orange);
-  background: transparent;
+  position: relative;
+  margin: 2.1rem 0 2.2rem;
+  padding: 1.35rem 1.45rem 1.25rem 1.55rem;
+  border: 1px solid var(--cvv-border);
+  border-left: 4px solid var(--cvv-mistral-orange);
+  border-radius: 0 16px 16px 0;
+  background: linear-gradient(135deg, rgba(244, 251, 250, 0.95) 0%, rgba(255, 255, 255, 0.94) 100%);
+  box-shadow: 0 18px 44px var(--cvv-navy-shadow-soft);
 }
 
 .cvv-article blockquote p {
   margin: 0.2rem 0;
-  color: var(--cvv-black-tint);
+  color: var(--cvv-mistral-black);
+  font-size: 1.08em;
+  line-height: 1.68;
 }
 
 .cvv-article code {
@@ -415,8 +469,8 @@ h1.wp-block-post-title::after {
 .cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist) > li,
 .cvv-list.cvv-list-ul > li {
   position: relative;
-  margin: 0.42rem 0;
-  padding: 0.12rem 0 0.12rem 1.32rem;
+  margin: 0.52rem 0;
+  padding: 0.08rem 0 0.08rem 1.42rem;
   border: 0;
   background: transparent;
 }
@@ -426,11 +480,12 @@ h1.wp-block-post-title::after {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.74em;
-  width: 0.46rem;
-  height: 0.46rem;
+  top: 0.78em;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 999px;
-  background: var(--cvv-mistral-orange);
+  background: radial-gradient(circle at 35% 35%, var(--cvv-white) 0 18%, var(--cvv-mistral-orange) 20% 100%);
+  box-shadow: 0 0 0 4px rgba(0, 194, 168, 0.1);
   transform: translateY(-50%);
 }
 
@@ -646,41 +701,43 @@ h1.wp-block-post-title::after {
 .cvv-article .cvv-toc-wrap {
   position: relative;
   overflow: hidden;
-  margin: 1.15rem 0 1.55rem;
-  padding: 0.85rem 0.95rem 0.78rem;
+  margin: 2.15rem 0 2.45rem;
+  padding: 1.05rem 1.08rem 0.96rem;
   border: 1px solid var(--cvv-toc-border);
-  border-left: 3px solid var(--cvv-sunshine-500);
-  background: linear-gradient(180deg, var(--cvv-white) 0%, var(--cvv-toc-bg) 100%);
-  box-shadow: 0 16px 36px var(--cvv-navy-shadow);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 96% 0%, rgba(0, 194, 168, 0.12) 0, rgba(0, 194, 168, 0) 34%),
+    linear-gradient(180deg, var(--cvv-white) 0%, var(--cvv-toc-bg) 100%);
+  box-shadow: 0 18px 48px var(--cvv-navy-shadow-soft);
 }
 
 .cvv-article .cvv-toc-wrap::before {
   content: '';
   position: absolute;
   inset: 0 0 auto 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--cvv-mistral-black), var(--cvv-mistral-orange), var(--cvv-sunshine-300));
-  opacity: 0.62;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cvv-mistral-black), var(--cvv-mistral-orange), rgba(0, 194, 168, 0.1));
+  opacity: 1;
 }
 
 .cvv-article .cvv-toc-head {
   width: 100%;
   margin: 0;
   border: 0;
-  padding: 0.1rem 0 0.48rem;
+  padding: 0.2rem 0 0.72rem;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  border-bottom: 1px dashed var(--cvv-border);
+  border-bottom: 1px solid rgba(221, 241, 238, 0.86);
 }
 
 .cvv-article .cvv-toc-head-label {
-  font-size: 1rem;
-  letter-spacing: 0.01em;
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
   color: var(--cvv-mistral-black);
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
@@ -691,7 +748,7 @@ h1.wp-block-post-title::after {
   width: 16px;
   min-width: 16px;
   height: 16px;
-  color: var(--cvv-black-tint);
+  color: var(--cvv-mistral-black);
 }
 
 .cvv-article .cvv-toc-head-arrow::before {
@@ -719,7 +776,7 @@ h1.wp-block-post-title::after {
 }
 
 .cvv-article .cvv-toc {
-  margin: 0.5rem 0 0.3rem;
+  margin: 0.72rem 0 0.24rem;
   padding-left: 0;
   counter-reset: toc-h2;
 }
@@ -743,14 +800,14 @@ h1.wp-block-post-title::after {
 .cvv-article .cvv-toc-row {
   display: flex;
   align-items: center;
-  gap: 0.36rem;
-  padding: 0.24rem 0;
+  gap: 0.46rem;
+  padding: 0.2rem 0;
 }
 
 .cvv-article .cvv-toc-link {
   color: var(--cvv-black-tint);
   text-decoration: none;
-  border-bottom: 1px dashed transparent;
+  border-bottom: 0;
   font-size: 0.95rem;
   line-height: 1.38;
   transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
@@ -758,19 +815,20 @@ h1.wp-block-post-title::after {
 
 .cvv-article .cvv-toc-link:hover {
   color: var(--cvv-mistral-orange);
-  border-bottom-color: currentColor;
 }
 
 .cvv-article .cvv-toc-item-h2 > .cvv-toc-row .cvv-toc-link {
   color: var(--cvv-mistral-black);
-  font-weight: 500;
+  font-weight: 700;
   flex: 1;
 }
 
 .cvv-article .cvv-toc-item-h2 > .cvv-toc-row {
-  margin: 0 -0.24rem;
-  padding: 0.3rem 0.24rem;
+  margin: 0.12rem -0.35rem;
+  padding: 0.42rem 0.46rem;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cvv-article .cvv-toc-item-h2 > .cvv-toc-row:hover {
@@ -779,11 +837,11 @@ h1.wp-block-post-title::after {
 
 .cvv-article .cvv-toc-item.is-active > .cvv-toc-row {
   background: rgba(0, 194, 168, 0.1);
+  box-shadow: inset 3px 0 0 var(--cvv-mistral-orange);
 }
 
 .cvv-article .cvv-toc-item.is-active > .cvv-toc-row .cvv-toc-link {
   color: var(--cvv-mistral-black);
-  border-bottom-color: var(--cvv-mistral-orange);
 }
 
 .cvv-article .cvv-toc-item.is-active > .cvv-toc-row .cvv-toc-link::before {
@@ -818,9 +876,9 @@ h1.wp-block-post-title::after {
 }
 
 .cvv-article .cvv-toc-sublist {
-  margin-left: 0.45rem;
-  padding-left: 0.18rem;
-  border-left: 1px dotted var(--cvv-border);
+  margin-left: 0.92rem;
+  padding-left: 0.62rem;
+  border-left: 1px solid rgba(0, 194, 168, 0.24);
   max-height: 1200px;
   overflow: hidden;
   opacity: 1;
@@ -839,9 +897,9 @@ h1.wp-block-post-title::after {
 }
 
 .cvv-article .cvv-toc-toggle {
-  width: 24px;
-  min-width: 24px;
-  height: 24px;
+  width: 22px;
+  min-width: 22px;
+  height: 22px;
   border: 0;
   padding: 0;
   background: transparent;
@@ -854,8 +912,8 @@ h1.wp-block-post-title::after {
 .cvv-article .cvv-toc-toggle::before {
   content: '▾';
   display: inline-block;
-  width: 24px;
-  color: var(--cvv-black-tint);
+  width: 22px;
+  color: var(--cvv-mistral-black);
   font-size: 12px;
   line-height: 1;
   text-align: center;
@@ -907,15 +965,19 @@ h1.wp-block-post-title::after {
 }
 
 .cvv-article .cvv-faq-item {
-  border-bottom: 1px solid var(--cvv-border);
-  margin: 0;
-  padding: 0.08rem 0.72rem;
-  transition: background-color 0.22s ease, border-color 0.22s ease;
+  border: 1px solid var(--cvv-border);
+  border-radius: 14px;
+  margin: 0.72rem 0;
+  padding: 0.08rem 0.84rem;
+  background: var(--cvv-white);
+  box-shadow: 0 10px 26px var(--cvv-navy-shadow-soft);
+  transition: background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .cvv-article .cvv-faq-item.is-open {
-  background: var(--cvv-toc-bg);
+  background: linear-gradient(180deg, var(--cvv-white) 0%, var(--cvv-toc-bg) 100%);
   border-color: rgba(0, 194, 168, 0.28);
+  box-shadow: 0 16px 40px rgba(10, 37, 64, 0.07);
 }
 
 .cvv-article .cvv-faq-trigger {
@@ -926,7 +988,7 @@ h1.wp-block-post-title::after {
   justify-content: space-between;
   align-items: center;
   gap: 0.7rem;
-  padding: 0.68rem 0;
+  padding: 0.82rem 0;
   text-align: left;
   cursor: pointer;
   font-family: inherit;
@@ -934,9 +996,9 @@ h1.wp-block-post-title::after {
 
 .cvv-article .cvv-faq-trigger-text {
   color: var(--cvv-mistral-black);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.46;
-  font-size: 1.01rem;
+  font-size: 1.02rem;
 }
 
 .cvv-article .cvv-faq-trigger-arrow {
@@ -947,7 +1009,7 @@ h1.wp-block-post-title::after {
   min-width: 16px;
   height: 16px;
   color: var(--cvv-mistral-orange);
-  border: 1px solid rgba(0, 194, 168, 0.36);
+  border: 1px solid rgba(0, 194, 168, 0.44);
   border-radius: 999px;
   background: var(--cvv-white);
   transition: background-color 0.22s ease, color 0.22s ease;
@@ -981,7 +1043,61 @@ h1.wp-block-post-title::after {
 
 .cvv-article .cvv-faq-item.is-open .cvv-faq-a {
   opacity: 1;
-  margin: 0 0 0.82rem;
+  margin: 0 0 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cvv-article h1::after,
+  h1.wp-block-post-title::after,
+  body.single-post .single-post-header .display-md::after,
+  .single-post-header h1.display-md::after,
+  .cvv-article h2::after {
+    animation: cvvAccentBreath 5.4s ease-in-out infinite;
+  }
+
+  .cvv-article h3::before {
+    animation: cvvDotPulse 4.8s ease-in-out infinite;
+  }
+
+  .cvv-article .cvv-toc-wrap,
+  .cvv-article .cvv-faq-item,
+  .cvv-article blockquote {
+    animation: cvvSoftReveal 0.55s ease both;
+  }
+}
+
+@keyframes cvvAccentBreath {
+  0%,
+  100% {
+    opacity: 0.9;
+    box-shadow: 0 10px 28px rgba(0, 194, 168, 0.16);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 10px 34px rgba(0, 194, 168, 0.28);
+  }
+}
+
+@keyframes cvvDotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(0, 194, 168, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(0, 194, 168, 0.16);
+  }
+}
+
+@keyframes cvvSoftReveal {
+  from {
+    opacity: 0.86;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .cvv-article .cvv-faq-a > :first-child {
