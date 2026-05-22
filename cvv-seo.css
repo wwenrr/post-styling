@@ -431,7 +431,7 @@ body.single-post .single-post-header .display-md::after,
 .cvv-list,
 .cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist),
 .cvv-article ol:not(.cvv-toc):not(.cvv-list) {
-  margin: 0.95rem 0 1.15rem;
+  margin: 1.05rem 0 1.55rem;
   color: var(--cvv-black-tint);
 }
 
@@ -443,14 +443,14 @@ body.single-post .single-post-header .display-md::after,
 .cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist),
 .cvv-list.cvv-list-ul {
   list-style: none;
-  padding-left: 0.1rem;
+  padding-left: 0;
 }
 
 .cvv-article ul:not(.cvv-toc):not(.cvv-list):not(.cvv-toc-sublist) > li,
 .cvv-list.cvv-list-ul > li {
   position: relative;
-  margin: 0.52rem 0;
-  padding: 0.08rem 0 0.08rem 1.42rem;
+  margin: 0.72rem 0;
+  padding: 0 0 0 1.25rem;
   border: 0;
   background: transparent;
 }
@@ -461,11 +461,11 @@ body.single-post .single-post-header .display-md::after,
   position: absolute;
   left: 0;
   top: 0.78em;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.34rem;
+  height: 0.34rem;
   border-radius: 999px;
-  background: radial-gradient(circle at 35% 35%, var(--cvv-white) 0 18%, var(--cvv-mistral-orange) 20% 100%);
-  box-shadow: 0 0 0 4px rgba(0, 194, 168, 0.1);
+  background: var(--cvv-mistral-orange);
+  box-shadow: none;
   transform: translateY(-50%);
 }
 
@@ -479,8 +479,8 @@ body.single-post .single-post-header .display-md::after,
 .cvv-article ol:not(.cvv-toc):not(.cvv-list):not(.cvv-faq-list) > li,
 .cvv-list.cvv-list-ol:not(.cvv-faq-list) > li {
   position: relative;
-  margin: 0.46rem 0;
-  padding: 0.1rem 0 0.1rem 1.96rem;
+  margin: 0.8rem 0;
+  padding: 0 0 0 2.05rem;
   border: 0;
   background: transparent;
   counter-increment: cvv-ordered;
@@ -491,19 +491,19 @@ body.single-post .single-post-header .display-md::after,
   content: counter(cvv-ordered);
   position: absolute;
   left: 0;
-  top: 0.08rem;
-  width: 1.38rem;
-  height: 1.38rem;
+  top: 0.12em;
+  width: 1.42rem;
+  height: 1.42rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--cvv-code-border);
+  border: 1px solid var(--cvv-border);
   border-radius: 999px;
-  background: var(--cvv-toc-bg);
+  background: var(--cvv-white);
   color: var(--cvv-mistral-black);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .cvv-faq-list {
