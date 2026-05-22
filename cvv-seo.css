@@ -65,6 +65,8 @@ h1.wp-block-post-title {
   hyphens: none !important;
   line-height: 1.13 !important;
   color: var(--cvv-mistral-black) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
 }
 
 h1.wp-block-post-title,
@@ -93,9 +95,9 @@ body.single-post .single-post-header .display-md,
   position: relative;
   padding-bottom: 0.42em;
   color: var(--cvv-mistral-black) !important;
-  font-weight: 700 !important;
-  line-height: 1.13 !important;
-  letter-spacing: -0.028em !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.038em !important;
 }
 
 body.single-post .single-post-header .display-md::after,
@@ -169,6 +171,7 @@ body.single-post .single-post-header .display-md::after,
   font-size: clamp(2.08rem, 4.7vw, 3.16rem);
   line-height: 1.03;
   letter-spacing: -0.032em;
+  font-weight: 800;
   padding-bottom: 0.5em;
   border-bottom: 0;
   text-wrap: pretty;
