@@ -508,7 +508,7 @@ body.single-post .single-post-header .display-md::after,
 
 .cvv-faq-list {
   list-style: none;
-  margin: 0.72rem 0 1rem;
+  margin: 0.8rem 0 2.3rem;
   padding-left: 0;
 }
 
@@ -945,19 +945,24 @@ body.single-post .single-post-header .display-md::after,
 }
 
 .cvv-article .cvv-faq-item {
-  border: 1px solid var(--cvv-border);
-  border-radius: 14px;
-  margin: 0.72rem 0;
-  padding: 0.08rem 0.84rem;
-  background: var(--cvv-white);
-  box-shadow: 0 10px 26px var(--cvv-navy-shadow-soft);
-  transition: background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  border: 0;
+  border-top: 1px solid var(--cvv-border);
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: border-color 0.22s ease;
+}
+
+.cvv-article .cvv-faq-item:last-child {
+  border-bottom: 1px solid var(--cvv-border);
 }
 
 .cvv-article .cvv-faq-item.is-open {
-  background: linear-gradient(180deg, var(--cvv-white) 0%, var(--cvv-toc-bg) 100%);
-  border-color: rgba(0, 194, 168, 0.28);
-  box-shadow: 0 16px 40px rgba(10, 37, 64, 0.07);
+  background: transparent;
+  border-color: rgba(0, 194, 168, 0.36);
+  box-shadow: none;
 }
 
 .cvv-article .cvv-faq-trigger {
@@ -967,8 +972,8 @@ body.single-post .single-post-header .display-md::after,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.7rem;
-  padding: 0.82rem 0;
+  gap: 1.1rem;
+  padding: 1.18rem 0;
   text-align: left;
   cursor: pointer;
   font-family: inherit;
@@ -977,39 +982,54 @@ body.single-post .single-post-header .display-md::after,
 .cvv-article .cvv-faq-trigger-text {
   color: var(--cvv-mistral-black);
   font-weight: 700;
-  line-height: 1.46;
-  font-size: 1.02rem;
+  line-height: 1.4;
+  font-size: clamp(1.08rem, 2vw, 1.22rem);
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
 }
 
 .cvv-article .cvv-faq-trigger-arrow {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  min-width: 16px;
-  height: 16px;
-  color: var(--cvv-mistral-orange);
-  border: 1px solid rgba(0, 194, 168, 0.44);
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  border: 1px solid var(--cvv-mistral-black);
   border-radius: 999px;
-  background: var(--cvv-white);
-  transition: background-color 0.22s ease, color 0.22s ease;
+  background: transparent;
+  transition: background-color 0.24s ease, border-color 0.24s ease;
 }
 
-.cvv-article .cvv-faq-trigger-arrow::before {
-  content: '+';
-  font-size: 14px;
-  line-height: 1;
-  transition: transform 0.22s ease;
+.cvv-article .cvv-faq-trigger-arrow::before,
+.cvv-article .cvv-faq-trigger-arrow::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--cvv-mistral-black);
+  transition: opacity 0.24s ease, transform 0.24s ease, background-color 0.24s ease;
 }
 
-.cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow::before {
-  content: '−';
-  transform: rotate(180deg);
+.cvv-article .cvv-faq-trigger-arrow::after {
+  transform: rotate(90deg);
+}
+
+.cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow::after {
+  opacity: 0;
+  transform: rotate(0deg);
 }
 
 .cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow {
   background: var(--cvv-mistral-orange);
-  color: var(--cvv-white);
+  border-color: var(--cvv-mistral-orange);
+}
+
+.cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow::before,
+.cvv-article .cvv-faq-item.is-open .cvv-faq-trigger-arrow::after {
+  background: var(--cvv-white);
 }
 
 .cvv-article .cvv-faq-a {
@@ -1022,8 +1042,10 @@ body.single-post .single-post-header .display-md::after,
 }
 
 .cvv-article .cvv-faq-item.is-open .cvv-faq-a {
+  max-height: none !important;
   opacity: 1;
-  margin: 0 0 1rem;
+  overflow: visible;
+  margin: -0.18rem 0 1.35rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1036,7 +1058,6 @@ body.single-post .single-post-header .display-md::after,
   }
 
   .cvv-article .cvv-toc-wrap,
-  .cvv-article .cvv-faq-item,
   .cvv-article blockquote {
     animation: cvvSoftReveal 0.55s ease both;
   }
