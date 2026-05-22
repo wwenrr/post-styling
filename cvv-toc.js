@@ -295,6 +295,67 @@
     answer.style.opacity = open ? '1' : '0';
   }
 
+  function enhanceActiveToc(root, headings) {
+    if (!('IntersectionObserver' in window)) return;
+
+    var tocLinks = Array.from(root.querySelectorAll('.cvv-toc-link[href^="#"]'));
+    if (!tocLinks.length) return;
+
+    var linksById = new Map();
+    tocLinks.forEach(function (link) {
+      var id = decodeURIComponent(link.getAttribute('href').slice(1));
+      if (id) linksById.set(id, link);
+    });
+
+    function setActive(id) {
+      tocLinks.forEach(function (link) {
+        var active = link === linksById.get(id);
+        link.classList.toggle('is-active', active);
+        if (active) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+        var item = link.closest('.cvv-toc-item');
+        if (item) item.classList.toggle('is-active', active);
+      });
+    }
+
+    var visible = new Map();
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.target.id) return;
+        if (entry.isIntersecting) {
+          visible.set(entry.target.id, entry.boundingClientRect.top);
+        } else {
+          visible.delete(entry.target.id);
+        }
+      });
+
+      var nextId = null;
+      var nextTop = Infinity;
+      visible.forEach(function (top, id) {
+        if (top < nextTop) {
+          nextTop = top;
+          nextId = id;
+        }
+      });
+
+      if (nextId) {
+        setActive(nextId);
+      }
+    }, {
+      rootMargin: '-18% 0px -68% 0px',
+      threshold: [0, 1]
+    });
+
+    headings.forEach(function (heading) {
+      if (heading.id && linksById.has(heading.id)) {
+        observer.observe(heading);
+      }
+    });
+  }
+
   function buildTOC(root) {
     var headings = root.querySelectorAll('h2, h3');
     if (!headings.length) return;
@@ -488,6 +549,8 @@
 
       wrap.appendChild(collapseAll);
     }
+
+    enhanceActiveToc(root, Array.from(headings));
   }
 
   function enhanceFAQ(root) {
