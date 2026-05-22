@@ -229,33 +229,10 @@ body.single-post .single-post-header .display-md::after,
   font-size: clamp(1.28rem, 2.04vw, 1.58rem);
   line-height: 1.18;
   letter-spacing: -0.015em;
-  padding-left: 1.22rem;
+  padding-left: 0;
   text-wrap: pretty;
   overflow-wrap: normal;
   word-break: normal;
-}
-
-.cvv-article h3::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.38em;
-  width: 0.58rem;
-  height: 0.58rem;
-  border: 2px solid rgba(0, 194, 168, 0.55);
-  border-radius: 999px;
-  background: var(--cvv-white);
-  box-shadow: 0 0 0 4px var(--cvv-surface-glow);
-}
-
-.cvv-article h3::after {
-  content: '';
-  position: absolute;
-  left: 0.26rem;
-  top: calc(0.38em + 0.58rem);
-  width: 1px;
-  height: 0.88rem;
-  background: linear-gradient(180deg, rgba(0, 194, 168, 0.42), rgba(0, 194, 168, 0));
 }
 
 .cvv-article :is(h1, h2, h3):target {
@@ -1058,10 +1035,6 @@ body.single-post .single-post-header .display-md::after,
     animation: cvvAccentBreath 5.4s ease-in-out infinite;
   }
 
-  .cvv-article h3::before {
-    animation: cvvDotPulse 4.8s ease-in-out infinite;
-  }
-
   .cvv-article .cvv-toc-wrap,
   .cvv-article .cvv-faq-item,
   .cvv-article blockquote {
@@ -1079,17 +1052,6 @@ body.single-post .single-post-header .display-md::after,
   50% {
     opacity: 1;
     box-shadow: 0 10px 34px rgba(0, 194, 168, 0.28);
-  }
-}
-
-@keyframes cvvDotPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 4px rgba(0, 194, 168, 0.1);
-  }
-
-  50% {
-    box-shadow: 0 0 0 7px rgba(0, 194, 168, 0.16);
   }
 }
 
@@ -1136,7 +1098,7 @@ body.single-post .single-post-header .display-md::after,
   }
 
   .cvv-article h3 {
-    padding-left: 0.86rem;
+    padding-left: 0;
   }
 
   .cvv-article h1 {
