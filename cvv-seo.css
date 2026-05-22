@@ -93,6 +93,9 @@ body.single-post .single-post-header .display-md,
   position: relative;
   padding-bottom: 0.42em;
   color: var(--cvv-mistral-black) !important;
+  font-weight: 700 !important;
+  line-height: 1.13 !important;
+  letter-spacing: -0.028em !important;
 }
 
 body.single-post .single-post-header .display-md::after,
